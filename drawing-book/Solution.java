@@ -11,11 +11,9 @@ public class Solution {
      * @param p target page number
      */
     static int pageCount(int n, int p) {
+
         if( (n/2) < p){
-            if(n % 2 == 0)
-                return ((n-p+1) / 2);
-            else
-                return ((n-p) / 2);
+            return (n/2) - (p/2);
         }else{
             return (p / 2);
         }
