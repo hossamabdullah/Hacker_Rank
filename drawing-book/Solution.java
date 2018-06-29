@@ -12,7 +12,10 @@ public class Solution {
      */
     static int pageCount(int n, int p) {
         if( (n/2) < p){
-            return ((n-p) / 2);
+            if(n % 2 == 0)
+                return ((n-p+1) / 2);
+            else
+                return ((n-p) / 2);
         }else{
             return (p / 2);
         }
