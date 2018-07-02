@@ -15,10 +15,8 @@ public class Solution {
      * 
      */
     static String catAndMouse(int x, int y, int z) {
-        int catADistance = z - x;
-        if(catADistance < 0) catADistance *= -1;  
-        int catBDistance = z - y;
-        if(catBDistance < 0) catBDistance *= -1;
+        int catADistance = Math.abs(z - x);
+        int catBDistance = Math.abs(z - y);
 
         if(catADistance < catBDistance)
             return "Cat A";
