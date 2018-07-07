@@ -8,10 +8,34 @@ import java.util.regex.*;
 
 public class Solution {
 
-    // Complete the pickingNumbers function below.
+    /**
+     * 
+     * @param a list of elements in the array1
+     */
     static int pickingNumbers(int[] a) {
+        int max = 0;
+        for(int i=0; i<a.length; i++){
+            int above = 1;
+            int below = 1;
+            for(int j=0; j<a.length; j++){
+                if(i == j)
+                    continue;
+                if(a[j] == a[i]){
+                    above++;
+                    below++;
+                }else if(a[j] == (a[i]+1)){
+                    above++;
+                }else if(a[j] == (a[i]-1)){
+                    below++;
+                }   
+            }
 
-
+            if(above > max)
+                max = above;
+            if(below > max)
+                max = below;
+        }
+        return max;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -32,7 +56,7 @@ public class Solution {
             a[i] = aItem;
         }
 
-        int result = pickingNumbers(a[n]);
+        int result = pickingNumbers(a);
 
         bufferedWriter.write(String.valueOf(result));
         bufferedWriter.newLine();
