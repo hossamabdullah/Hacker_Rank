@@ -8,10 +8,16 @@ import java.util.regex.*;
 
 public class Solution {
 
-    // Complete the saveThePrisoner function below.
+    /**
+     * @param n number of prissoners
+     * @param m number of sweets
+     * @param s number of starting chair
+     */
     static int saveThePrisoner(int n, int m, int s) {
-
-
+        int result = (m%n + (s-1))%n;
+        if(result == 0)
+            return n;
+        return result;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
