@@ -13,29 +13,24 @@ public class Solution {
      * @param a list of elements in the array1
      */
     static int pickingNumbers(int[] a) {
+        int[] count = new int[100];
         int max = 0;
-        for(int i=0; i<a.length; i++){
-            int above = 1;
-            int below = 1;
-            for(int j=0; j<a.length; j++){
-                if(i == j)
-                    continue;
-                if(a[j] == a[i]){
-                    above++;
-                    below++;
-                }else if(a[j] == (a[i]+1)){
-                    above++;
-                }else if(a[j] == (a[i]-1)){
-                    below++;
-                }   
-            }
+        int maxInterval = 0;
 
-            if(above > max)
-                max = above;
-            if(below > max)
-                max = below;
+        for(int i=0; i<a.length; i++){
+            if(a[i] > max)
+                max = a[i];
+            
+            count[a[i]]++;
         }
-        return max;
+
+        for(int i=0; i<max; i++){
+            int temp = count[i] + count[i+1];
+            if(temp > maxInterval)
+                maxInterval = temp;
+        }
+
+        return maxInterval;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
