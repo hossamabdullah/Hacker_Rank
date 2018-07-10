@@ -13,15 +13,8 @@ public class Solution {
      * @param height heights of obstacles
      */
     static int hurdleRace(int k, int[] heights) {
-        int maxHeight = 0;
-        for(int height: heights){
-            if(height > maxHeight)
-                maxHeight = height;
-        }
-        if(maxHeight > k)
-            return maxHeight - k;
-        else
-            return 0;
+        int maxHeight = Arrays.stream(heights).max().getAsInt();
+        return Math.max(maxHeight - k, 0);
     }
 
     private static final Scanner scanner = new Scanner(System.in);
