@@ -18,19 +18,20 @@ public class Solution {
     static int beautifulDays(int i, int j, int k) {
         int counter = 0;
         for(int x=i; x<=j; x++){
-            String num = x+"";
-            String reversed = "";
-            for(int c=num.length()-1; c>=0; c--){
-                reversed = reversed+num.charAt(c);
+            int temp = x;
+            String reverse = "";
+            while(temp != 0){
+                reverse = reverse+""+(temp % 10);
+                temp = temp / 10 ;
             }
-            int reversedNum = Integer.parseInt(reversed);
+            System.out.println(x +", " + reverse);
+            int reverseNum = Integer.parseInt(reverse);
 
-            System.out.println("rev: "+reversedNum+", num: "+x);
-            int diff = x - reversedNum;
+            int diff = x - reverseNum;
             if(diff < 0)
                 diff *= -1;
             
-            if(diff % k == 0)
+            if(diff % k ==0)
                 counter++;
         }
         return counter;
