@@ -18,22 +18,15 @@ public class Solution {
     static int beautifulDays(int i, int j, int k) {
         int counter = 0;
         for(int x=i; x<=j; x++){
-            int temp = x;
-            int numOfDigits = (int)(Math.log10(x)+1);
-            int multiplier = (int)Math.pow(10, numOfDigits);
-            // x = 123
-            // x%10 = 3,  x/10=12
-            // x%10 = 2,  x/10=1
-            // x%10 - 1,  x/10=0
-            int reverseX = 0;
-            while(temp != 0){
-                reverseX += multiplier* (temp%10);
-                temp /= 10;
-                multiplier /= 10;
-                // System.out.println("reverseXxx : " + reverseX+", Temp : "+temp+", Mult: "+multiplier);
+            String num = x+"";
+            String reversed = "";
+            for(int c=num.length()-1; c>=0; c--){
+                reversed = reversed+num.charAt(c);
             }
+            int reversedNum = Integer.parseInt(reversed);
 
-            int diff = x - reverseX;
+            System.out.println("rev: "+reversedNum+", num: "+x);
+            int diff = x - reversedNum;
             if(diff < 0)
                 diff *= -1;
             
