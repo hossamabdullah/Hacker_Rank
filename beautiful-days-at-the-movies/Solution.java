@@ -24,7 +24,7 @@ public class Solution {
                 reverse = reverse+""+(temp % 10);
                 temp = temp / 10 ;
             }
-            System.out.println(x +", " + reverse);
+            // System.out.println(x +", " + reverse);
             int reverseNum = Integer.parseInt(reverse);
 
             int diff = x - reverseNum;
