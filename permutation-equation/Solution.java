@@ -25,7 +25,7 @@ public class Solution {
         
         int[] solution = new int[p.length];
         for(int i=0; i<p.length; i++){
-            solution[i] = temp[temp[i]];
+            solution[i] = temp[temp[i]-1];
         }
 
         return solution;
