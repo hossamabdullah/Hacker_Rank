@@ -19,7 +19,9 @@ public class Solution {
             liked = shared / 2;
             cumulative += liked;
             dayNum++;
-        }   
+        }
+
+        double x =  ((5 * 3 * n) / 4);
 
         return cumulative;
     }
