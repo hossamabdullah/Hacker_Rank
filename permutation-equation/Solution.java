@@ -10,17 +10,9 @@ public class Solution {
 
     // Complete the permutationEquation function below.
     static int[] permutationEquation(int[] p) {
-        for(int i=0; i<p.length; i++){
-            System.out.println(p[i]);
-        }
-
         int[] temp = new int[p.length];
         for(int i=0; i<p.length; i++){
             temp[p[i]-1] = i+1;
-        }
-
-        for(int i=0; i<p.length; i++){
-            System.out.println(temp[i]);
         }
         
         int[] solution = new int[p.length];
