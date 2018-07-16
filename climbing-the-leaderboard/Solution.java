@@ -29,13 +29,16 @@ public class Solution {
 
         int[] solutions = new int[alice.length];
         for(int j=0; j<alice.length; j++){
-            for(int i=0; i<scores.length; i++){
+            int checkLimit = scores.length;
+            for(int i=0; i<checkLimit; i++){
                 if((alice[j] == scores[i]) || (alice[j] > scores[i])){
                     solutions[j] = rankings[i];
-                    // System.out.println(alice[j]+", "+scores[i]+", "+rankings[i]+", "+solutions[j]);
+                    checkLimit = i;
                     break;
                 }
             }
+            if(solutions[j] == 0 && checkLimit <= 1)
+                solutions[j] = 1;
             if(solutions[j] == 0)
                 solutions[j] = rankings[rankings.length-1]+1;
         }
