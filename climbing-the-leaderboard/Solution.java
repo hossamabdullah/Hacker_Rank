@@ -35,7 +35,10 @@ public class Solution {
                 else if(alice[j] > scores[i])
                     solutions[j] = rankings[i] - 1;
 
+                System.out.println(alice[j]+", "+scores[i]+", "+rankings[i]+", "+solutions[j]);
             }
+            if(solutions[j] == 0)
+                solutions[j] = rankings[rankings.length-1]+1;
         }
         return solutions;
     }
