@@ -30,12 +30,11 @@ public class Solution {
         int[] solutions = new int[alice.length];
         for(int j=0; j<alice.length; j++){
             for(int i=0; i<scores.length; i++){
-                if(alice[j] == scores[i])
+                if((alice[j] == scores[i]) || (alice[j] > scores[i])){
                     solutions[j] = rankings[i];
-                else if(alice[j] > scores[i])
-                    solutions[j] = rankings[i] - 1;
-
-                System.out.println(alice[j]+", "+scores[i]+", "+rankings[i]+", "+solutions[j]);
+                    // System.out.println(alice[j]+", "+scores[i]+", "+rankings[i]+", "+solutions[j]);
+                    break;
+                }
             }
             if(solutions[j] == 0)
                 solutions[j] = rankings[rankings.length-1]+1;
