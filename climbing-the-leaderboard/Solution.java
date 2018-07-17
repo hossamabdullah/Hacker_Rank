@@ -17,17 +17,24 @@ public class Solution {
         int start = 0;
         for(int i=alice.length-1; i>=0; i--){
             
+            boolean found = false;
             for(int j=start; j<scores.length; j++){
-                if(j!=start && scores[j]<scores[j-1])
+                if(j!=start && scores[j]<scores[j-1]){
+                    System.out.println("Increment"+j+", "+start+", "+scores[j]+", "+scores[j-1]+", "+rank);
                     rank++;
+                }
 
                 if(alice[i] >= scores[j]){
+                    found = true;
                     System.out.println(alice[i]+", "+scores[j]+", "+j+", "+rank);
                     start = j;
                     break;
                 }
             }
-            data[i] = rank;
+            if(found)
+                data[i] = rank;
+            else
+                data[i] = rank + 1;
         }
         return data;
     }
