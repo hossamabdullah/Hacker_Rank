@@ -12,37 +12,24 @@ public class Solution {
 
     // Complete the climbingLeaderboard function below.
     static int[] climbingLeaderboard(int[] scores, int[] alice) {
-        int[] rankings = new int[scores.length];
-        rankings[0] = 1;
-        for(int i=1; i<scores.length; i++){
-            if(scores[i] == scores[i-1])
-                rankings[i] = rankings[i-1];
-            else
-                rankings[i] = rankings[i-1] + 1;
-        }
+        int[] data = new int[alice.length];
+        int rank = 1;
+        int start = 0;
+        for(int i=alice.length-1; i>=0; i--){
+            
+            for(int j=start; j<scores.length; j++){
+                if(j!=start && scores[j]<scores[j-1])
+                    rank++;
 
-        for(int i=0; i<scores.length; i++){
-            System.out.println(rankings[i]);
-        }
-        System.out.println("done validating rankings");
-
-
-        int[] solutions = new int[alice.length];
-        for(int j=0; j<alice.length; j++){
-            int checkLimit = scores.length;
-            for(int i=0; i<checkLimit; i++){
-                if((alice[j] == scores[i]) || (alice[j] > scores[i])){
-                    solutions[j] = rankings[i];
-                    checkLimit = i;
+                if(alice[i] >= scores[j]){
+                    System.out.println(alice[i]+", "+scores[j]+", "+j+", "+rank);
+                    start = j;
                     break;
                 }
             }
-            if(solutions[j] == 0 && checkLimit <= 1)
-                solutions[j] = 1;
-            if(solutions[j] == 0)
-                solutions[j] = rankings[rankings.length-1]+1;
+            data[i] = rank;
         }
-        return solutions;
+        return data;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
