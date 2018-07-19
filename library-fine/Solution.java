@@ -15,8 +15,11 @@ public class Solution {
 
         if(m1 > m2)
             return 500*(m1-m2);
-
-        return 15*(d1-d2);        
+        
+        if(d1 > d2)
+            return 15*(d1-d2);        
+        
+        return 0;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
