@@ -10,8 +10,25 @@ public class Solution {
 
     // Complete the equalizeArray function below.
     static int equalizeArray(int[] arr) {
+        Map<Integer, Integer> numOfOcc = new HashMap<>();
+        int maxNumOfOcc = 0;
 
+        for(int i=0; i<arr.length; i++){
+            int currentNumOfOcc = 0;
+            if(numOfOcc.containsKey(arr[i])){
+                currentNumOfOcc = numOfOcc.get(arr[i]);
+                currentNumOfOcc++;
+                numOfOcc.remove(arr[i]);
+                numOfOcc.put(arr[i], currentNumOfOcc);
+            }else{
+                numOfOcc.put(arr[i], 1);
+            }
 
+            if(currentNumOfOcc > maxNumOfOcc)
+                maxNumOfOcc = currentNumOfOcc;
+        }
+
+        return arr.length - maxNumOfOcc;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
