@@ -10,22 +10,14 @@ public class Solution {
 
     // Complete the equalizeArray function below.
     static int equalizeArray(int[] arr) {
-        Map<Integer, Integer> numOfOcc = new HashMap<>();
+        int[] numOfOcc = new int[101];
         int maxNumOfOcc = 0;
 
         for(int i=0; i<arr.length; i++){
-            int currentNumOfOcc = 0;
-            if(numOfOcc.containsKey(arr[i])){
-                currentNumOfOcc = numOfOcc.get(arr[i]);
-                currentNumOfOcc++;
-                numOfOcc.remove(arr[i]);
-                numOfOcc.put(arr[i], currentNumOfOcc);
-            }else{
-                numOfOcc.put(arr[i], 1);
-            }
+            numOfOcc[arr[i]-1]++;
 
-            if(currentNumOfOcc > maxNumOfOcc)
-                maxNumOfOcc = currentNumOfOcc;
+            if(numOfOcc[arr[i]-1] > maxNumOfOcc)
+                maxNumOfOcc = numOfOcc[arr[i]-1];
         }
 
         return arr.length - maxNumOfOcc;
