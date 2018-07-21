@@ -30,11 +30,7 @@ public class Solution {
             return "Yes";
 
         k  -= (sDiff + tDiff);
-
-        if(k >= (2*numOfSimilarties))
-            return "Yes";
-
-        if(k % 2 ==0)
+        if(k >= (2*numOfSimilarties) || k % 2 == 0)
             return "Yes";
         else
             return "No";
