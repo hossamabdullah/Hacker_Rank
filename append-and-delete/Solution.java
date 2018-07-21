@@ -13,12 +13,6 @@ public class Solution {
         int sLength = s.length();
         int tLength = t.length();
 
-        int max = 0;
-        if(sLength > tLength)
-            max = sLength;
-        else   
-            max = tLength;
-
         int numOfSimilarties = 0;
         for(int i=0; i<sLength; i++){
             if(i == t.length())
