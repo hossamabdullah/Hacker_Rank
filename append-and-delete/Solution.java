@@ -14,25 +14,22 @@ public class Solution {
         int tLength = t.length();
 
         int numOfSimilarties = 0;
-        for(int i=0; i<sLength; i++){
-            if(i == t.length())
-                break;
+        for(int i=0; i<sLength && i<tLength; i++){
             if(s.charAt(i) == t.charAt(i))
                 numOfSimilarties++;
             else
                 break;
         }
-
         int sDiff = sLength - numOfSimilarties;
         int tDiff = tLength - numOfSimilarties;
-
         System.out.println(k +", "+tDiff+", "+sDiff);
+        
         if(k < (tDiff + sDiff))
             return "No";
         if(k == (tDiff + sDiff))
             return "Yes";
 
-        k -= (sDiff + tDiff);
+        k  -= (sDiff + tDiff);
 
         if(k >= (2*numOfSimilarties))
             return "Yes";
