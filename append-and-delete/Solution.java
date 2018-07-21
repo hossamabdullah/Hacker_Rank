@@ -25,11 +25,14 @@ public class Solution {
                 break;
             if(s.charAt(i) == t.charAt(i))
                 numOfSimilarties++;
+            else
+                break;
         }
 
         int sDiff = sLength - numOfSimilarties;
         int tDiff = tLength - numOfSimilarties;
 
+        System.out.println(k +", "+tDiff+", "+sDiff);
         if(k < (tDiff + sDiff))
             return "No";
         if(k == (tDiff + sDiff))
