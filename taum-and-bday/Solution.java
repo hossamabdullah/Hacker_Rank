@@ -9,20 +9,10 @@ import java.util.regex.*;
 public class Solution {
 
     // Complete the taumBday function below.
-    static int taumBday(int b, int w, int bc, int wc, int z) {
-        if(bc <= z && wc <= z)
-            return b*bc+w*wc;
-        
-        if(bc <= z)
-            return (b+w)*bc + w*z;
-        
-        if(wc <= z)
-            return (b+w)*wc + b*z;
-        
-        if(wc < bc)
-            return (b+w)*wc + b*z;
-        else
-            return (b+w)*bc + w*z;
+    static long taumBday(int b, int w, int bc, int wc, int z) {
+        bc = bc>wc? ((bc-wc>z)? wc+z : bc) : bc;
+        wc = wc>bc? ((wc-bc>z)? bc+z : wc) : wc;
+        return b*bc+w*wc;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -48,7 +38,7 @@ public class Solution {
 
             int z = Integer.parseInt(bcWcz[2]);
 
-            int result = taumBday(b, w, bc, wc, z);
+            long result = taumBday(b, w, bc, wc, z);
 
             bufferedWriter.write(String.valueOf(result));
             bufferedWriter.newLine();
