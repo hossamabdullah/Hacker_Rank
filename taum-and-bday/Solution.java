@@ -10,9 +10,9 @@ public class Solution {
 
     // Complete the taumBday function below.
     static long taumBday(int b, int w, int bc, int wc, int z) {
-        bc = bc>wc? ((bc-wc>z)? wc+z : bc) : bc;
-        wc = wc>bc? ((wc-bc>z)? bc+z : wc) : wc;
-        return b*bc+w*wc;
+        long bcl = bc>wc? ((bc-wc>z)? wc+z : bc) : bc;
+        long wcl = wc>bc? ((wc-bc>z)? bc+z : wc) : wc;
+        return b*bcl+w*wcl;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
