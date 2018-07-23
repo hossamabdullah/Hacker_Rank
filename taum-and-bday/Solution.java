@@ -10,8 +10,15 @@ public class Solution {
 
     // Complete the taumBday function below.
     static int taumBday(int b, int w, int bc, int wc, int z) {
-
-
+        if(bc <= z && wc <= z)
+            return b*bc+w*wc;
+        
+        if(bc <= z)
+            return (b+w)*bc + w*z;
+        
+        // if(wc <= z)
+        return (b+w)*wc + b*z;
+        
     }
 
     private static final Scanner scanner = new Scanner(System.in);
