@@ -16,9 +16,13 @@ public class Solution {
         if(bc <= z)
             return (b+w)*bc + w*z;
         
-        // if(wc <= z)
-        return (b+w)*wc + b*z;
+        if(wc <= z)
+            return (b+w)*wc + b*z;
         
+        if(wc < bc)
+            return (b+w)*wc + b*z;
+        else
+            return (b+w)*bc + w*z;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
