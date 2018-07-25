@@ -19,7 +19,7 @@ public class Solution {
     static int[] stones(int n, int a, int b) {
         // int[] data = new int[(int)Math.pow(n,2)/2];
         Set<Integer> data = new TreeSet<>();
-        for(int i=0; i<(int)Math.pow(n,2)/2; i++){
+        for(int i=0; i<(int)Math.pow(n-1,2); i++){
             int temp = 0;
             String x = Integer.toBinaryString(i);
             while(x.length()<n-1){
