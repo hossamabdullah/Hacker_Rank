@@ -7,11 +7,42 @@ import java.util.concurrent.*;
 import java.util.regex.*;
 
 public class Solution {
-
+/**
+ * 
+ * 1 1
+ * 1 2
+ * 2 1
+ * 2 2
+ * 
+ */
     // Complete the stones function below.
     static int[] stones(int n, int a, int b) {
+        // int[] data = new int[(int)Math.pow(n,2)/2];
+        Set<Integer> data = new HashSet<>();
+        for(int i=0; i<(int)Math.pow(n,2)/2; i++){
+            int temp = 0;
+            String x = Integer.toBinaryString(i);
+            while(x.length()<n-1){
+                x = "0"+x;
+            }
+            System.out.print(x);
+            for(int k=x.length()-1; k>=0 ;k--){
+                if(x.charAt(k) == '0')
+                    temp = temp  + a;
+                else
+                    temp = temp + b;
+            }
+            System.out.println(", value= "+temp);
+            if(temp != 0)
+                data.add(temp);
+        }
 
-
+        int[] sol = new int[data.size()];
+        int index= 0;
+        for(Integer i: data){
+            sol[index++] = i;
+        }
+        return sol;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
