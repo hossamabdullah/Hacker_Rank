@@ -14,27 +14,30 @@ public class Solution {
  * 2 1
  * 2 2
  * 
+ * 
+ * 1  1
+ * 2  3
+ * 3  7
+ * 4  15
+ * 5  31
+ * 6  63
+ * 7  127
+ * 8  255
+ * 9  511
  */
     // Complete the stones function below.
     static int[] stones(int n, int a, int b) {
-        // int[] data = new int[(int)Math.pow(n,2)/2];
+        n = n - 1;
         Set<Integer> data = new TreeSet<>();
-        for(int i=0; i<(int)Math.pow(n-1,2); i++){
+        for(int i=0; i<=n; i++){
             int temp = 0;
-            String x = Integer.toBinaryString(i);
-            while(x.length()<n-1){
-                x = "0"+x;
+            for(int j=0; j<i; j++){
+                temp += b;
             }
-            System.out.print(x);
-            for(int k=x.length()-1; k>=0 ;k--){
-                if(x.charAt(k) == '0')
-                    temp = temp  + a;
-                else
-                    temp = temp + b;
+            for(int j=i; j<=n; j++){
+                temp += a;
             }
-            System.out.println(", value= "+temp);
-            if(temp != 0)
-                data.add(temp);
+            data.add(temp);
         }
 
         int[] sol = new int[data.size()];
