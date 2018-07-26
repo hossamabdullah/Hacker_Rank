@@ -34,7 +34,7 @@ public class Solution {
             for(int j=0; j<i; j++){
                 temp += b;
             }
-            for(int j=i; j<=n; j++){
+            for(int j=i; j<n; j++){
                 temp += a;
             }
             data.add(temp);
