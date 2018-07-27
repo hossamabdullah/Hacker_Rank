@@ -8,10 +8,16 @@ import java.util.regex.*;
 
 public class Solution {
 
-    // Complete the howManyGames function below.
     static int howManyGames(int p, int d, int m, int s) {
-        // Return the number of games you can buy
-
+        int count = 0;
+        while(s > p){
+            if(p != m)
+                p -= d;
+            if(p < m)
+                m=p;
+            count++;
+        }
+        return count;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
