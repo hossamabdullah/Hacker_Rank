@@ -12,12 +12,15 @@ public class Solution {
         int count = 0;
         while(s > p){
             s -= p;
-            if(p != m)
-                p -= d;
-            if(p < m)
-                m=p;
             count++;
+            
+            p -= d;
+            if(p < m){
+                p = m;
+                break;
+            }
         }
+        count += s/p;
         return count;
     }
 
