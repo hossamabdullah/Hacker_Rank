@@ -11,6 +11,7 @@ import javafx.stage.PopupWindow;
 public class Solution {
 
     static void kaprekarNumbers(int p, int q) {
+        boolean nonFoundFlag = true;
         for(int i=p; i<=q; i++){
             double result = Math.pow(i, 2);
             int length = String.valueOf(i).length();
@@ -23,8 +24,11 @@ public class Solution {
             if(sum == i){
                 System.out.print(i);
                 System.out.print(" ");
+                nonFoundFlag = false;
             }
         }
+        if(nonFoundFlag)
+            System.out.print("INVALID RANGE");
     }
 
     private static final Scanner scanner = new Scanner(System.in);
