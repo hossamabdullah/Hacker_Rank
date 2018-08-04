@@ -11,26 +11,53 @@ public class Solution {
     static String timeInWords(int h, int m) {
         if(m == 0)
             return (data[h]+" o' clock");
-
-        String connectionWord = "";
-        if(m == 15 || m == 30 || m == 45)
-            connectionWord += "";
-        else if(m == 1 || m == 59)
-            connectionWord += " minute";
-        else
-            connectionWord += " minutes";
-
+            
         if(m <= 30){
+            String connectionWord = desc[m];
             connectionWord += " past ";
             return data[m] + connectionWord + data[h];
         }else{
-            connectionWord += " to ";
             m = 60 - m;
             h = h + 1;
+            String connectionWord = desc[m];
+            connectionWord += " to ";
             return data[m] + connectionWord + data[h];
         }
     }
-    
+
+    private static final String[] desc = {
+        "",
+        " minute",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        "",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        " minutes",
+        "",
+    };
 
     private static final String[] data ={
         "temp because of zero index",
