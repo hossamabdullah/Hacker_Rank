@@ -12,11 +12,13 @@ public class Solution {
         if(m == 0)
             return (data[h]+" o' clock");
 
-        String connectionWord = " ";
-        if(m == 1 || m == 59)
-            connectionWord += "minute";
+        String connectionWord = "";
+        if(m == 15 || m == 30 || m == 45)
+            connectionWord += "";
+        else if(m == 1 || m == 59)
+            connectionWord += " minute";
         else
-            connectionWord += "minutes";
+            connectionWord += " minutes";
 
         if(m <= 30){
             connectionWord += " past ";
