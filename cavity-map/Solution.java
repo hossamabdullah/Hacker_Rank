@@ -44,6 +44,13 @@ public class Solution {
         int[][] grid = new int[n][n];
         for (int i = 0; i < n; i++) {
             int temp = scanner.nextInt();
+            // System.out.println(temp+"");
+            // System.out.println(temp / (int)Math.pow(10, n-1));
+            while(temp / (int)Math.pow(10, n-1) == 0){
+                temp *= 10;
+                temp +=  scanner.nextInt();
+                // System.out.println("InIF " + temp+"");
+            }
             int index = n-1;
             while(temp != 0){
                 grid[i][index] = temp % 10;
