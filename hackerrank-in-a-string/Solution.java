@@ -18,6 +18,8 @@ public class Solution {
             if(temp == keyword.charAt(index)){
                 index++;
             }
+            if(index == keyword.length())
+                break;
         }
 
         if(index == keyword.length())
