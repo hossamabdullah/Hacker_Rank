@@ -10,14 +10,25 @@ public class Solution {
 
     // Complete the hackerrankInString function below.
     static String hackerrankInString(String s) {
+        String keyword = "hackerrank";
+        int index = 0;
 
+        for(int i=0; i<s.length(); i++){
+            char temp = s.charAt(i);
+            if(temp == keyword.charAt(index)){
+                index++;
+            }
+        }
 
+        if(index == keyword.length())
+            return "YES";
+        else
+            return "NO";
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         int q = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
@@ -27,11 +38,9 @@ public class Solution {
 
             String result = hackerrankInString(s);
 
-            bufferedWriter.write(result);
-            bufferedWriter.newLine();
+            System.out.println(result);
+            
         }
-
-        bufferedWriter.close();
 
         scanner.close();
     }
