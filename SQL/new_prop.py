@@ -20,3 +20,7 @@ file.close()
 file = open(link+'/Solution.sql','w') 
 file.write('')
 file.close()
+
+from subprocess import call
+call(["git", "add", "."])
+call(["git", "commit", "-m", "initial directory for"+link])
