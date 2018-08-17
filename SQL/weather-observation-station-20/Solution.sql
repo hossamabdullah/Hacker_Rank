@@ -3,6 +3,7 @@ round(
     lat_n    
 , 4)
 from station
+order by lat_n
 limit ( 
     select round(count(*)/2, 0)
     from station
