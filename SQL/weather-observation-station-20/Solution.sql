@@ -1,10 +1,9 @@
 select
 round(
-    
+    lat_n    
 , 4)
 from station
-
-
-select count(*)/2
-from station
-order by lat_n
+limit ( 
+    select count(*)/2
+    from station
+    order by lat_n)
