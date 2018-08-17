@@ -1,10 +1,9 @@
-select
+select 
 round(
-    lat_n    
+    st.lat_n
 , 4)
-from station
-order by lat_n
-limit ( 
-    select round(count(*)/2, 0)
-    from station
-    order by lat_n), 1
+from station st
+where(
+    (select count(lat_n) from station where lat_n < st.lat_n)
+    =(select count(lat_n) from station where lat_n > st.lat_n)
+)
