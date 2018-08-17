@@ -23,4 +23,4 @@ file.close()
 
 from subprocess import call
 call(["git", "add", "."])
-call(["git", "commit", "-m", "initial directory for"+link])
+call(["git", "commit", "-m", "initial directory for "+link])
