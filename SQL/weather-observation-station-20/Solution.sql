@@ -5,6 +5,6 @@ round(
 from station
 
 
-select count(*)
+select count(*)/2
 from station
 order by lat_n
