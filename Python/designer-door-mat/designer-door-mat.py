@@ -1,0 +1,6 @@
+input_text = input()
+# print(input_text)
+numbers = input_text.split(" ")
+height = int(numbers[0])
+width = int(numbers[1])
+# print(width)
