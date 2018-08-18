@@ -32,6 +32,7 @@ public class Solution {
         // }
 
         //solution
+        double min = 0;
         for(int i=0; i<n; i++){
             Integer[] xData = data.get(i);
             double xValue = 0;
@@ -39,7 +40,17 @@ public class Solution {
                 xValue += elem;
             }
             xValue /= xData.length;
+            double xResult = 0;
+            for(int j=0; j<allElements.size(); j++){
+                xResult += Math.abs(allElements.get(i) - xValue);
+            }
+            System.out.println(xResult);
+            if(i==0 || xResult < min){
+                min = xResult;
+            }
         }
+        System.out.println(min);
+
     }
 
 }
