@@ -22,21 +22,24 @@ public class Solution {
         }
 
         //before solution
-        System.out.println(data.size());
-        for(int i=0; i<allElements.size(); i++){
-            System.out.println(allElements.get(i));
-        }
-
-        // //solution
-        // for(int i=0; i<n; i++){
-        //     Integer[] xData = data.get(i);
-        //     double xValue = 0;
-        //     for(Integer elem: xData){
-        //         xValue += elem;
-        //     }
-        //     xValue /= xData.length;
-
+        // System.out.println(data.size());
+        // for(int i=0; i<allElements.size(); i++){
+        //     System.out.println(allElements.get(i));
         // }
+        // Integer[] xdata = data.get(0);
+        // for(int i=0; i<xdata.length; i++){
+        //     System.out.println(xdata[i]);
+        // }
+
+        //solution
+        for(int i=0; i<n; i++){
+            Integer[] xData = data.get(i);
+            double xValue = 0;
+            for(Integer elem: xData){
+                xValue += elem;
+            }
+            xValue /= xData.length;
+        }
     }
 
 }
