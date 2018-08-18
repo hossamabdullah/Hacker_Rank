@@ -17,7 +17,7 @@ file.write('this is the link for the problem \n')
 file.write(temp)
 file.close()
 
-file = open(link+'/Solution.py','w') 
+file = open(link+'/'+link+'.py','w') 
 file.write('')
 file.close()
 
