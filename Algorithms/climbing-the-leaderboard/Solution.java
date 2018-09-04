@@ -31,25 +31,44 @@ class Rank{
 }
 
 public class Solution {
-
+    public static void reverse(int[] data) {
+        int left = 0;
+        int right = data.length - 1;
+    
+        while( left < right ) {
+            // swap the values at the left and right indices
+            int temp = data[left];
+            data[left] = data[right];
+            data[right] = temp;
+    
+            // move the left and right index pointers in toward the center
+            left++;
+            right--;
+        }
+    }
     // Complete the climbingLeaderboard function below.
     static int[] climbingLeaderboard(int[] scores, int[] alice) {
+        reverse(alice);
         int fullLength = scores.length + alice.length;
         Rank[] rankings = new Rank[fullLength];
         
-        int minLength = 0;
-        if(scores.length < alice.length)
-            minLength = scores.length;
-        else   
-            minLength = alice.length;
-        
         //Merge concatenation
-        for(int i=0; i<minLength; i++){
+        int si = 0;//score index
+        int ai = 0;//alice index
+        for(int i=0; i<fullLength; i++){
             Rank temp = null;
-            if(scores[i] > alice[i]){
-                temp = new Rank(scores[i], false);
+            if(si == scores.length){
+                temp = new Rank(alice[ai], true);
+                ai++;
+            }else if(ai == alice.length){
+                temp = new Rank(scores[si], false);
+                si++;
+            }else if(scores[si] > alice[ai]){
+                temp = new Rank(scores[si], false);
+                si++;
             }else{
-                temp = new Rank(alice[i], true);
+                temp = new Rank(alice[ai], true);
+                ai++;
             }
             
             if(i==0)
@@ -63,43 +82,22 @@ public class Solution {
 
             rankings[i] = temp;
         }
-
-        int index = minLength;
-        while(minLength < scores.length){
-            Rank temp = new Rank(scores[index], false);
-            if(temp.score == rankings[index-1].score)
-                temp.rank = rankings[index-1].rank;
-            else if(!rankings[index-1].isAlice)
-                temp.rank = rankings[index-1].rank + 1;
-            else
-                temp.rank = rankings[index-1].rank;
-            rankings[index] = temp;
-            index ++;
-        }
-
-        index = minLength;
-        while(minLength < alice.length){
-            Rank temp = new Rank(scores[index], true);
-            if(temp.score == rankings[index-1].score)
-                temp.rank = rankings[index-1].rank;
-            else if(!rankings[index-1].isAlice)
-                temp.rank = rankings[index-1].rank + 1;
-            else
-                temp.rank = rankings[index-1].rank;
-            rankings[index] = temp;
-            index ++;
-        }
         
+        int[] answer = new int[alice.length];
+        int answerIndex =  alice.length-1;
         for(int i=0; i<rankings.length; i++){
-            System.out.println(rankings[i]);
+            if(rankings[i].isAlice){
+                answer[answerIndex] = rankings[i].rank;
+                answerIndex--;
+            }
         }
-        return null;
+        return answer;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+        // BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         int scoresCount = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
@@ -129,18 +127,21 @@ public class Solution {
 
         int[] result = climbingLeaderboard(scores, alice);
 
-        // for (int i = 0; i < result.length; i++) {
-        //     bufferedWriter.write(String.valueOf(result[i]));
+        for(int i=0; i<result.length; i++){
+            System.out.println(result[i]);
+        }
+        for (int i = 0; i < result.length; i++) {
+            bufferedWriter.write(String.valueOf(result[i]));
 
-        //     if (i != result.length - 1) {
-        //         bufferedWriter.write("\n");
-        //     }
-        // }
+            if (i != result.length - 1) {
+                bufferedWriter.write("\n");
+            }
+        }
 
-        // bufferedWriter.newLine();
+        bufferedWriter.newLine();
 
-        // bufferedWriter.close();
+        bufferedWriter.close();
 
-        // scanner.close();
+        scanner.close();
     }
 }
