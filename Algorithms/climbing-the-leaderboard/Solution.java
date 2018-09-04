@@ -12,31 +12,18 @@ public class Solution {
 
     // Complete the climbingLeaderboard function below.
     static int[] climbingLeaderboard(int[] scores, int[] alice) {
-        int[] data = new int[alice.length];
-        int rank = 1;
-        int start = 0;
-        for(int i=alice.length-1; i>=0; i--){
-            
-            boolean found = false;
-            for(int j=start; j<scores.length; j++){
-                if(j!=start && scores[j]<scores[j-1]){
-                    System.out.println("Increment"+j+", "+start+", "+scores[j]+", "+scores[j-1]+", "+rank);
-                    rank++;
-                }
-
-                if(alice[i] >= scores[j]){
-                    found = true;
-                    System.out.println(alice[i]+", "+scores[j]+", "+j+", "+rank);
-                    start = j;
-                    break;
-                }
+        int[] rankings = new int[scores.length];
+        rankings[0] = 1;
+        for(int i=1; i<scores.length; i++){
+            if(scores[i] == scores[i-1]){
+                rankings[i] = rankings[i-1];
+            }else{
+                rankings[i] = rankings[i-1] + 1;
             }
-            if(found)
-                data[i] = rank;
-            else
-                data[i] = rank + 1;
+            System.out.println(rankings[i]);
         }
-        return data;
+        
+        return null;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
