@@ -127,9 +127,9 @@ public class Solution {
 
         int[] result = climbingLeaderboard(scores, alice);
 
-        for(int i=0; i<result.length; i++){
-            System.out.println(result[i]);
-        }
+        // for(int i=0; i<result.length; i++){
+        //     System.out.println(result[i]);
+        // }
         for (int i = 0; i < result.length; i++) {
             bufferedWriter.write(String.valueOf(result[i]));
 
