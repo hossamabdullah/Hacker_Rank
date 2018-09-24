@@ -10,23 +10,29 @@ public class Solution {
 
     // Complete the squares function below.
     static int squares(int a, int b) {
-        return 0;
+        int count = 0;
+        for(Long i: squaredIntegers){
+            if(i > b)
+                break;
+            if(i >= a && i <= b){
+                count++;
+            }
+        }
+        return count;
     }
     
 
-    private static Set<Double> squaredIntegers = new HashSet<>();
+    private static long[] squaredIntegers = new long[31624];
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        double square = 0;
-        int i = 1;
-        while(square < 1000000000){
-            square = Math.pow(i, 2);
-            squaredIntegers.add(square);
-            i++;
+        for(int i=1; i<31624; i++){
+            long square = (long)Math.pow(i, 2);
+            squaredIntegers[i-1] = square;
         }
-        System.out.println(Math.pow(i-1, 2));
-        System.out.println(squaredIntegers.size());
+        // for(int i=31624; i>=1; i--){
+        //     System.out.println(squaredIntegers[i-1]);
+        // }
 
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
