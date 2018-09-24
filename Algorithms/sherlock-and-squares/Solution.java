@@ -25,7 +25,7 @@ public class Solution {
             squaredIntegers.add(square);
             i++;
         }
-        System.out.println(square);
+        System.out.println(Math.pow(i-1, 2));
         System.out.println(squaredIntegers.size());
 
         BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
