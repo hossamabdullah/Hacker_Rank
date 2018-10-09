@@ -53,12 +53,12 @@ def print_rangoli(size):
         # print(x)
         x = x - midCol
         # print(x)
-        middle_char = chars[size*2 - x ]
+        middle_char = chars[x]
         matrix[x+midCol][mid] = middle_char
         for y in range(1, size-x+1):
             # print("y=")
             # print(y)
-            selectedChar =  chars[size*2 - x - y]
+            selectedChar =  chars[x + y]
             matrix[x+midCol][mid - 2*y] = selectedChar
             matrix[x+midCol][mid + 2*y] = selectedChar  
 
