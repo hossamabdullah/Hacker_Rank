@@ -68,4 +68,4 @@ def print_rangoli(size):
         for c in r:
             x  = x + c
         print(x)
-    pass
+    
