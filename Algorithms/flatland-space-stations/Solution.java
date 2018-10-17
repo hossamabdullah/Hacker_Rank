@@ -9,31 +9,23 @@ import java.util.regex.*;
 public class Solution {
 
     // Complete the flatlandSpaceStations function below.
-    static int flatlandSpaceStations(int n, int[] c) {
+    static int flatlandSpaceStations(int n, Integer[] c) {
+        Set<Integer> stations = new HashSet<Integer>();
+        Collections.addAll(stations, c);
         int maxDistance = 0;
         for(int i=0; i<n; i++){
-            boolean isStationFlag = false;
-            for(int j=0; j<c.length; j++){
-                if(i == c[j]){
-                    isStationFlag = true;
-                }
-            }
-            if(!isStationFlag){
+            if(!stations.contains(i)){
                 int beforeDistance = 0;
                 for(int before=i-1; before>0; before--){
                     beforeDistance ++;
-                    for(int jj=0; jj<c.length; jj++){
-                        if(before == c[jj])
-                            break;
-                    }
+                    if(stations.contains(before))
+                        break;
                 }
                 int afterDistance = 0;
                 for(int after=i+1; after>n; after++){
                     afterDistance ++;
-                    for(int jjj=0; jjj<c.length; jjj++){
-                        if(after == c[jjj])
-                            break;
-                    }
+                    if(stations.contains(after))
+                        break;
                 }
 
                 System.out.println(beforeDistance+", "+afterDistance+", "+maxDistance);
@@ -61,7 +53,7 @@ public class Solution {
 
         int m = Integer.parseInt(nm[1]);
 
-        int[] c = new int[m];
+        Integer[] c = new Integer[m];
 
         String[] cItems = scanner.nextLine().split(" ");
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
