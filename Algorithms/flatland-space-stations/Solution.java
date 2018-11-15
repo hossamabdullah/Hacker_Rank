@@ -7,7 +7,6 @@ import java.util.concurrent.*;
 import java.util.regex.*;
 
 public class Solution {
-
     // Complete the flatlandSpaceStations function below.
     static int flatlandSpaceStations(int n, Integer[] c) {
         Set<Integer> stations = new HashSet<Integer>();
