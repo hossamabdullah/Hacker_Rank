@@ -9,4 +9,7 @@ for i in range(n):
 
 for i in range(m):
     n_b = input()
-    print(*d[n_b], sep=' ')
+    if n_b in d:
+        print(*d[n_b], sep=' ')
+    else:
+        print('-1')
