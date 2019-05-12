@@ -9,30 +9,18 @@ import java.util.regex.*;
 public class Solution {
 
     // Complete the cavityMap function below.
-    static String[] cavityMap(int[][] grid) {
-
+    static int[][] cavityMap(int[][] grid) {
         for(int i=1; i<grid.length-1; i++){
+            String line = "";
             for(int j=1; j<grid[i].length-1; j++){
-                if(grid[i][j] > grid[i-1][j] &&
-                grid[i][j] > grid[i+1][j] &&
-                grid[i][j] > grid[i][j-1] &&
-                grid[i][j] > grid[i][j+1])
+                int key = grid[i][j];
+                if(key > grid[i-1][j] && key > grid[i+1][j]
+                && key > grid[i][j-1] && key > grid[i][j+1]){
                     grid[i][j] = -1;
+                }
             }
         }
-
-        String[] result = new String[grid.length];
-        for(int i=0; i<grid.length; i++){
-            result[i] = "";
-            for(int j=0; j<grid[i].length; j++){
-                if(grid[i][j] == -1)
-                    result[i] += "X";
-                else
-                    result[i] += grid[i][j];
-            }
-        }
-
-        return result;
+        return grid;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -59,10 +47,17 @@ public class Solution {
             }
         }
 
-        String[] result = cavityMap(grid);
+        int[][] result = cavityMap(grid);
         
-        for (int i = 0; i < n; i++) {
-            System.out.println(result[i]);
+        for(int i=0; i<grid.length; i++){
+            for(int j=0; j<grid[i].length; j++){
+                int item = result[i][j];
+                if(item == -1)
+                    System.out.print("X");
+                else
+                    System.out.print(result[i][j]);
+            }
+            System.out.println();
         }
     }
 }
