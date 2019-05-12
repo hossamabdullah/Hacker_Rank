@@ -9,55 +9,52 @@ import java.util.regex.*;
 public class Solution {
 
     // Complete the cavityMap function below.
-    static int[][] cavityMap(int[][] grid) {
+    static String[] cavityMap(char[][] grid) {
+        String[] result = new String[grid.length];
         for(int i=1; i<grid.length-1; i++){
-            String line = "";
             for(int j=1; j<grid[i].length-1; j++){
-                int key = grid[i][j];
-                if(key > grid[i-1][j] && key > grid[i+1][j]
-                && key > grid[i][j-1] && key > grid[i][j+1]){
-                    grid[i][j] = -1;
+                if(grid[i][j] > grid[i-1][j] && grid[i][j] > grid[i+1][j]
+                && grid[i][j] > grid[i][j-1] && grid[i][j] > grid[i][j+1]){
+                    grid[i][j] = 'X';
                 }
             }
+            result[i] =  new String(grid[i]);
         }
-        return grid;
+        result[0] =  new String(grid[0]);
+        result[grid.length-1] =  new String(grid[grid.length-1]);
+        return result;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
+        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
+
         int n = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
-        int[][] grid = new int[n][n];
+        char[][] gridd  = new char[n][n];
+
         for (int i = 0; i < n; i++) {
-            int temp = scanner.nextInt();
-            // System.out.println(temp+"");
-            // System.out.println(temp / (int)Math.pow(10, n-1));
-            while(temp / (int)Math.pow(10, n-1) == 0){
-                temp *= 10;
-                temp +=  scanner.nextInt();
-                // System.out.println("InIF " + temp+"");
-            }
-            int index = n-1;
-            while(temp != 0){
-                grid[i][index] = temp % 10;
-                temp  = temp / 10;
-                index--;
+            String gridItem = scanner.nextLine();
+            char[] gridItemChars = gridItem.toCharArray();
+            gridd[i] = gridItemChars;
+        }
+
+        String[] result = cavityMap(gridd);
+
+        for (int i = 0; i < result.length; i++) {
+            bufferedWriter.write(result[i]);
+
+            if (i != result.length - 1) {
+                bufferedWriter.write("\n");
             }
         }
 
-        int[][] result = cavityMap(grid);
-        
-        for(int i=0; i<grid.length; i++){
-            for(int j=0; j<grid[i].length; j++){
-                int item = result[i][j];
-                if(item == -1)
-                    System.out.print("X");
-                else
-                    System.out.print(result[i][j]);
-            }
-            System.out.println();
-        }
+        bufferedWriter.newLine();
+
+        bufferedWriter.close();
+
+        scanner.close();
     }
 }
