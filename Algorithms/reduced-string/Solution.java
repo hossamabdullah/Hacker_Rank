@@ -14,16 +14,26 @@ public class Solution {
 
     // Complete the superReducedString function below.
     static String superReducedString(String s) {
-        int i = 0;
-        while(s.length() != 0  &&  s.length() > i+1){
-            System.out.println(s.charAt(i)+", "+s.charAt(i+1));
-            if(s.charAt(i) == s.charAt(i+1)){
-                s = s.substring(0, i) + s.substring(i+1, s.length());
-            }else{
+        
+        while (true) {
+            int i = 0;
+            boolean flag = false;
+            while (s.length() != 0 && s.length() > i + 1) {
+                System.out.println(s.charAt(i) + ", " + s.charAt(i + 1));
+                if (s.charAt(i) == s.charAt(i + 1)) {
+                    s = s.substring(0, i) + s.substring(i + 2, s.length());
+                    flag = true;
+                }
                 i++;
+                System.out.println(s + ", " + i);
             }
-            System.out.println(s +", "+ i);
+            System.out.println(flag);
+            if(!flag){
+                break;
+            }
         }
+        if (s.length() == 0)
+            return "Empty String";
         return s;
     }
 
