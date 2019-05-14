@@ -9,38 +9,51 @@ import java.util.regex.*;
 public class Solution {
 
     // Complete the flatlandSpaceStations function below.
-    static int flatlandSpaceStations(int n, Integer[] c) {
-        Set<Integer> stations = new HashSet<Integer>();
-        Collections.addAll(stations, c);
+    static int flatlandSpaceStations(int n, int[] c) {
+        if(n == c.length)
+            return 0;
+
+        int[] data = new int[n];
+        int[] distance = new int[n];
+
+        for(int i=0; i<c.length; i++){
+            data[c[i]] = 1;
+        }
+
         int maxDistance = 0;
         for(int i=0; i<n; i++){
-            if(!stations.contains(i)){
-                int beforeDistance = 0;
-                for(int before=i-1; before>0; before--){
-                    beforeDistance ++;
-                    if(stations.contains(before))
-                        break;
-                }
-                int afterDistance = 0;
-                for(int after=i+1; after>n; after++){
-                    afterDistance ++;
-                    if(stations.contains(after))
-                        break;
-                }
+            if(data[i] == 1)
+                maxDistance = 0;
+            else{
+                distance[i] = ++maxDistance;
+            }                
+        }
 
-                System.out.println(beforeDistance+", "+afterDistance+", "+maxDistance);
-                if(beforeDistance > afterDistance){
-                    if(beforeDistance > maxDistance)
-                        maxDistance = beforeDistance;
-                }else{
-                    if(afterDistance > maxDistance)
-                        maxDistance = afterDistance;
+        maxDistance = 0;
+        for(int i=n-1; i>=0; i--){
+            if(data[i] == 1){
+                maxDistance = 0;
+            }else{
+                maxDistance++;
+                if(maxDistance < distance[i]){
+                    distance[i] = maxDistance;
                 }
             }
-            
         }
+
+        maxDistance = 0;
+        for(int i=0; i<n; i++){
+            if(distance[i] > maxDistance){
+                maxDistance = distance[i];
+            }
+        }
+
+        // for(int i=0; i<n; i++){
+        //     System.out.print(data[i]);
+        // }
         return maxDistance;
     }
+
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -53,7 +66,7 @@ public class Solution {
 
         int m = Integer.parseInt(nm[1]);
 
-        Integer[] c = new Integer[m];
+        int[] c = new int[m];
 
         String[] cItems = scanner.nextLine().split(" ");
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
