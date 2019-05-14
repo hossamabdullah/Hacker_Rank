@@ -30,10 +30,14 @@ public class Solution {
         }
 
         maxDistance = 0;
+        boolean notFound = true;
         for(int i=n-1; i>=0; i--){
             if(data[i] == 1){
                 maxDistance = 0;
+                notFound = false;
             }else{
+                if(notFound)
+                    continue;
                 maxDistance++;
                 if(maxDistance < distance[i]){
                     distance[i] = maxDistance;
@@ -86,3 +90,13 @@ public class Solution {
         scanner.close();
     }
 }
+
+
+/*
+test case
+95 19
+68 81 46 54 30 11 19 23 22 12 38 91 48 75 26 86 29 83 62
+
+11
+
+*/
