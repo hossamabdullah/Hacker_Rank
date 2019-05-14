@@ -18,30 +18,31 @@ public class Solution {
         int chain = 0;
         boolean firstOneFlag = true;
         boolean lastOneFlag = false;
+        if(spaces[0] == 1)
+            firstOneFlag = false;
         for(int i=0; i<n; i++){
            if(spaces[i] == 0){
                chain++;
-               if(i==n-1){
-                //    System.out.println("Im in"+i);
-                   lastOneFlag = true;
-               }
            }else{
-               if(chain > longest){
-                   longest= chain;
-                   firstOneFlag = false;
-               }else if(longest == 0){
-                   firstOneFlag = false;
+               if(((chain > longest) && longest != 0)){
+                    firstOneFlag = false;
                }
+               if(chain > longest){
+                    longest= chain;   
+                }
                chain = 0;
            }
         }
         if(chain > longest){
+            System.out.println("In");
             longest= chain;
+            lastOneFlag = true;
         }
         if(firstOneFlag || lastOneFlag){
-            // System.out.println("Im in");
+            System.out.println("Im in");
             return longest;
         }
+        System.out.println("lets print longest: "+longest);
         return (longest +1)/2;
     }
 
