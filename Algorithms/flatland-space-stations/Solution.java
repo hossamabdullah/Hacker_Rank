@@ -10,55 +10,37 @@ public class Solution {
 
     // Complete the flatlandSpaceStations function below.
     static int flatlandSpaceStations(int n, int[] c) {
-        if(n == c.length)
-            return 0;
-
-        int[] data = new int[n];
-        int[] distance = new int[n];
-
+        int[] spaces = new int[n];
         for(int i=0; i<c.length; i++){
-            data[c[i]] = 1;
+            spaces[c[i]] = 1;
         }
-
-        int maxDistance = 0;
+        int longest = 0;
+        int chain = 0;
+        boolean firstOneFlag = true;
+        boolean lastOneFlag = false;
         for(int i=0; i<n; i++){
-            if(data[i] == 1)
-                maxDistance = 0;
-            else{
-                distance[i] = ++maxDistance;
-            }                
+           if(spaces[i] == 0){
+               chain++;
+               if(i==n-1)
+                    lastOneFlag = true;
+           }else{
+               if(chain > longest){
+                   longest= chain;
+                   firstOneFlag = false;
+               }else if(longest == 0){
+                   firstOneFlag = false;
+               }
+               chain = 0;
+           }
         }
 
-        maxDistance = 0;
-        boolean notFound = true;
-        for(int i=n-1; i>=0; i--){
-            if(data[i] == 1){
-                maxDistance = 0;
-                notFound = false;
-            }else{
-                if(notFound)
-                    continue;
-                maxDistance++;
-                if(maxDistance < distance[i]){
-                    distance[i] = maxDistance;
-                }
-            }
-        }
-
-        maxDistance = 0;
-        for(int i=0; i<n; i++){
-            if(distance[i] > maxDistance){
-                maxDistance = distance[i];
-            }
-        }
-
-        // for(int i=0; i<n; i++){
-        //     System.out.print(data[i]);
-        // }
-        return maxDistance;
+        if(firstOneFlag || lastOneFlag)
+            return longest;
+        return (longest +1)/2;
     }
 
-
+    // 00000100
+    // 1000001001
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
@@ -96,6 +78,8 @@ public class Solution {
 test case
 95 19
 68 81 46 54 30 11 19 23 22 12 38 91 48 75 26 86 29 83 62
+
+
 
 11
 
