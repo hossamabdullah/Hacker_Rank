@@ -21,8 +21,10 @@ public class Solution {
         for(int i=0; i<n; i++){
            if(spaces[i] == 0){
                chain++;
-               if(i==n-1)
-                    lastOneFlag = true;
+               if(i==n-1){
+                //    System.out.println("Im in"+i);
+                   lastOneFlag = true;
+               }
            }else{
                if(chain > longest){
                    longest= chain;
@@ -33,9 +35,13 @@ public class Solution {
                chain = 0;
            }
         }
-
-        if(firstOneFlag || lastOneFlag)
+        if(chain > longest){
+            longest= chain;
+        }
+        if(firstOneFlag || lastOneFlag){
+            // System.out.println("Im in");
             return longest;
+        }
         return (longest +1)/2;
     }
 
