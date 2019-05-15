@@ -8,37 +8,41 @@ import java.util.regex.*;
 
 public class Solution {
     // Complete the flatlandSpaceStations function below.
-    static int flatlandSpaceStations(int n, Integer[] c) {
-        Set<Integer> stations = new HashSet<Integer>();
-        Collections.addAll(stations, c);
-        int maxDistance = 0;
-        for(int i=0; i<n; i++){
-            if(!stations.contains(i)){
-                int beforeDistance = 0;
-                for(int before=i-1; before>0; before--){
-                    beforeDistance ++;
-                    if(stations.contains(before))
-                        break;
-                }
-                int afterDistance = 0;
-                for(int after=i+1; after>n; after++){
-                    afterDistance ++;
-                    if(stations.contains(after))
-                        break;
-                }
-
-                System.out.println(beforeDistance+", "+afterDistance+", "+maxDistance);
-                if(beforeDistance > afterDistance){
-                    if(beforeDistance > maxDistance)
-                        maxDistance = beforeDistance;
-                }else{
-                    if(afterDistance > maxDistance)
-                        maxDistance = afterDistance;
-                }
+    static int flatlandSpaceStations(int n, int[] c) {
+        Arrays.sort(c);
+        int maxDiff = 0;
+        for(int i=1; i<c.length; i++){
+            int diff = c[i] - c[i-1];
+            if(diff > maxDiff){
+                maxDiff = diff;
+                System.out.println(maxDiff);
             }
-            
         }
-        return maxDistance;
+
+        boolean first= false;
+        boolean last = false;
+        if(c[0] != 0 && c[0] >= (maxDiff/2)){
+            System.out.println("A");
+            maxDiff = c[0];
+            first= true;
+        }
+        if(c[c.length-1] != n-1 &&  n-1-c[c.length-1] >= (maxDiff/2) ){
+            System.out.println("B");
+            if(!first){
+                last =true;
+                maxDiff = n-1-c[c.length-1];
+            }
+            if(first && n-1-c[c.length-1] > maxDiff){
+                first = false;
+                last =true;
+                maxDiff = n-1-c[c.length-1];
+            }
+        }
+        if(last || first){
+            return maxDiff;
+        }
+        System.out.println("C");
+        return ((maxDiff)/2);
     }
 
     private static final Scanner scanner = new Scanner(System.in);
@@ -52,7 +56,7 @@ public class Solution {
 
         int m = Integer.parseInt(nm[1]);
 
-        Integer[] c = new Integer[m];
+        int[] c = new int[m];
 
         String[] cItems = scanner.nextLine().split(" ");
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
@@ -72,3 +76,15 @@ public class Solution {
         scanner.close();
     }
 }
+
+
+/*
+test case
+95 19
+68 81 46 54 30 11 19 23 22 12 38 91 48 75 26 86 29 83 62
+
+
+
+11
+
+*/
