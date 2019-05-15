@@ -20,13 +20,27 @@ public class Solution {
             }
         }
 
-        if(c[0] != 0 && c[0] > (maxDiff/2)){
+        boolean first= false;
+        boolean last = false;
+        if(c[0] != 0 && c[0] >= (maxDiff/2)){
             System.out.println("A");
-            return c[0];
+            maxDiff = c[0];
+            first= true;
         }
-        if(c[c.length-1] != n-1 &&  n-1-c[c.length-1] > (maxDiff/2) ){
+        if(c[c.length-1] != n-1 &&  n-1-c[c.length-1] >= (maxDiff/2) ){
             System.out.println("B");
-            return n-1-c[c.length-1];
+            if(!first){
+                last =true;
+                maxDiff = n-1-c[c.length-1];
+            }
+            if(first && n-1-c[c.length-1] > maxDiff){
+                first = false;
+                last =true;
+                maxDiff = n-1-c[c.length-1];
+            }
+        }
+        if(last || first){
+            return maxDiff;
         }
         System.out.println("C");
         return ((maxDiff)/2);
