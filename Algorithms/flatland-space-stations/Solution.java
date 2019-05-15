@@ -14,14 +14,21 @@ public class Solution {
         int maxDiff = 0;
         for(int i=1; i<c.length; i++){
             int diff = c[i] - c[i-1];
-            if(diff > maxDiff)
+            if(diff > maxDiff){
                 maxDiff = diff;
+                System.out.println(maxDiff);
+            }
         }
 
-        if(c[0] != 0 && c[0] > maxDiff)
+        if(c[0] != 0 && c[0] > (maxDiff/2)){
+            System.out.println("A");
             return c[0];
-        if(c[c.length-1] != n-1 &&  n-1-c[c.length-1] > maxDiff )
+        }
+        if(c[c.length-1] != n-1 &&  n-1-c[c.length-1] > (maxDiff/2) ){
+            System.out.println("B");
             return n-1-c[c.length-1];
+        }
+        System.out.println("C");
         return ((maxDiff)/2);
     }
 
