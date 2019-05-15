@@ -10,44 +10,21 @@ public class Solution {
 
     // Complete the flatlandSpaceStations function below.
     static int flatlandSpaceStations(int n, int[] c) {
-        int[] spaces = new int[n];
-        for(int i=0; i<c.length; i++){
-            spaces[c[i]] = 1;
+        Arrays.sort(c);
+        int maxDiff = 0;
+        for(int i=1; i<c.length; i++){
+            int diff = c[i] - c[i-1];
+            if(diff > maxDiff)
+                maxDiff = diff;
         }
-        int longest = 0;
-        int chain = 0;
-        boolean firstOneFlag = true;
-        boolean lastOneFlag = false;
-        if(spaces[0] == 1)
-            firstOneFlag = false;
-        for(int i=0; i<n; i++){
-           if(spaces[i] == 0){
-               chain++;
-           }else{
-               if(((chain > longest) && longest != 0)){
-                    firstOneFlag = false;
-               }
-               if(chain > longest){
-                    longest= chain;   
-                }
-               chain = 0;
-           }
-        }
-        if(chain > longest){
-            System.out.println("In");
-            longest= chain;
-            lastOneFlag = true;
-        }
-        if(firstOneFlag || lastOneFlag){
-            System.out.println("Im in");
-            return longest;
-        }
-        System.out.println("lets print longest: "+longest);
-        return (longest +1)/2;
+
+        if(c[0] != 0 && c[0] > maxDiff)
+            return c[0];
+        if(c[c.length-1] != n-1 &&  n-1-c[c.length-1] > maxDiff )
+            return n-1-c[c.length-1];
+        return ((maxDiff)/2);
     }
 
-    // 00000100
-    // 1000001001
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
