@@ -37,9 +37,8 @@ public class Solution {
                 break;
         }
         
-        if(n+count < 6){
-            int temp = n + count;
-            count += 6 - (temp);
+        if(n+count < 6){ 
+            count = 6 - n;
         }
         return count;
     }
