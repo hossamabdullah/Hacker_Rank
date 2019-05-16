@@ -7,7 +7,6 @@ import java.util.concurrent.*;
 import java.util.regex.*;
 
 public class Solution {
-
     // Complete the flatlandSpaceStations function below.
     static int flatlandSpaceStations(int n, int[] c) {
         Arrays.sort(c);
