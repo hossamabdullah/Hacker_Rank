@@ -17,17 +17,20 @@ public class Solution {
         String specialCharacters = "!@#$%^&*()-+";
 
         boolean numbersFlag = false, lowerCaseFlag = false, upperCaseFlag = false, specialCharactersFlag= false;
-
+        // int count = 4;
         for(int i=0; i<password.length(); i++){
             String currentChar = password.charAt(i)+"";
-            if(numbers.contains(currentChar))
+            if(!numbersFlag && numbers.contains(currentChar)){
                 numbersFlag =true;
-            else if(lowerCase.contains(currentChar))
+            }else if(!lowerCaseFlag && lowerCase.contains(currentChar)){
                 lowerCaseFlag =true;
-            else if(upperCase.contains(currentChar))
+            }else if(!upperCaseFlag && upperCase.contains(currentChar)){
                 upperCaseFlag=true;
-            else if(specialCharacters.contains(currentChar))
+            }else if(!specialCharactersFlag && specialCharacters.contains(currentChar))
                 specialCharactersFlag = true;
+
+            if(numbersFlag && lowerCaseFlag && upperCaseFlag && specialCharactersFlag)
+                break;
         }
 
         int count=  0;
