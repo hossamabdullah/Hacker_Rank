@@ -17,31 +17,25 @@ public class Solution {
         String specialCharacters = "!@#$%^&*()-+";
 
         boolean numbersFlag = false, lowerCaseFlag = false, upperCaseFlag = false, specialCharactersFlag= false;
-        // int count = 4;
+        int count = 4;
         for(int i=0; i<password.length(); i++){
             String currentChar = password.charAt(i)+"";
             if(!numbersFlag && numbers.contains(currentChar)){
                 numbersFlag =true;
+                count --;
             }else if(!lowerCaseFlag && lowerCase.contains(currentChar)){
                 lowerCaseFlag =true;
+                count --;
             }else if(!upperCaseFlag && upperCase.contains(currentChar)){
                 upperCaseFlag=true;
-            }else if(!specialCharactersFlag && specialCharacters.contains(currentChar))
+                count --;
+            }else if(!specialCharactersFlag && specialCharacters.contains(currentChar)){
                 specialCharactersFlag = true;
-
+                count --;
+            }
             if(numbersFlag && lowerCaseFlag && upperCaseFlag && specialCharactersFlag)
                 break;
         }
-
-        int count=  0;
-        if(!numbersFlag)
-            count ++;
-        if(!lowerCaseFlag)
-            count ++;
-        if(!upperCaseFlag)
-            count ++;
-        if(!specialCharactersFlag)
-            count ++;
         
         if(n+count < 6){
             int temp = n + count;
