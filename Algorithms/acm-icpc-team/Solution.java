@@ -12,13 +12,14 @@ public class Solution {
     static int[] acmTeam(String[] topic) {
         int[] result = new int[2];
         for(int i=0; i<topic.length-1; i++){
-            int teamI = Integer.parseInt(topic[i], 2);
+            BigInteger bi = new BigInteger(topic[i], 2);
 
             for(int j=i+1; j<topic.length; j++){
-                int teamJ = Integer.parseInt(topic[j], 2);
+                BigInteger bj = new BigInteger(topic[j], 2);
 
+                BigInteger br = bi.or(bj);
                 // System.out.println((teamI | teamJ));
-                int temp = Integer.bitCount((teamI | teamJ));
+                int temp = br.bitCount();
 
                 if(temp == result[0]){
                     result[1]++;
