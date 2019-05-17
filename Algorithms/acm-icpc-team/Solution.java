@@ -17,16 +17,16 @@ public class Solution {
             for(int j=i+1; j<topic.length; j++){
                 int teamJ = Integer.parseInt(topic[j], 2);
 
-                System.out.println(teamI);
-                System.out.println(teamJ);
-                System.out.println((teamI | teamJ));
-                // if((teamI | teamJ) == result[0]){
-                //     result[1]++;
-                // }
-                // if((teamI | teamJ)  > result[0]){
-                //     result[0] = (teamI | teamJ);
-                //     result[1] = 1;
-                // }
+                // System.out.println((teamI | teamJ));
+                int temp = Integer.bitCount((teamI | teamJ));
+
+                if(temp == result[0]){
+                    result[1]++;
+                }
+                if(temp  > result[0]){
+                    result[0] = temp;
+                    result[1] = 1;
+                }
             }
         }
         return result;
