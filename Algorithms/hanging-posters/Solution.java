@@ -22,13 +22,13 @@ class Result {
      *  3. INTEGER_ARRAY lengths
      */
 
-    public static int solve(int h, List<Integer> wallPoints, List<Integer> lengths) {
-        int max = 0;
+    public static double solve(int h, List<Integer> wallPoints, List<Integer> lengths) {
+        double max = 0;
         for(int i=0; i<wallPoints.size(); i++){
             float reachRequiredfloat = wallPoints.get(i) - (float)(25 * lengths.get(i) / 100);
-            int reachReq = (int) Math.ceil(reachRequiredfloat);
+            double reachReq = (int) Math.ceil(reachRequiredfloat);
             // System.out.println(reachReq);
-            int ladder = reachReq - h;
+            double ladder = reachReq - h;
             if(ladder > max)
                 max = ladder;
         }
@@ -56,7 +56,7 @@ public class Solution {
             .map(Integer::parseInt)
             .collect(toList());
 
-        int answer = Result.solve(h, wallPoints, lengths);
+        double answer = Result.solve(h, wallPoints, lengths);
 
         bufferedWriter.write(String.valueOf(answer));
         bufferedWriter.newLine();
