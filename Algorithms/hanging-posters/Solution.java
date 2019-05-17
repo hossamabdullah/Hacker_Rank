@@ -25,10 +25,11 @@ class Result {
     public static int solve(int h, List<Integer> wallPoints, List<Integer> lengths) {
         int max = 0;
         for(int i=0; i<wallPoints.size(); i++){
-            float reachRequiredfloat = (float)wallPoints.get(i) - (25 * lengths.get(i) / 100);
+            float reachRequiredfloat = wallPoints.get(i) - (float)(25 * lengths.get(i) / 100);
             int reachReq = (int) Math.ceil(reachRequiredfloat);
+            // System.out.println(reachReq);
             int ladder = reachReq - h;
-            if(ladder >0 && ladder > max)
+            if(ladder > max)
                 max = ladder;
         }
         return max;
