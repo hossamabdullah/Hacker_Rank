@@ -34,6 +34,7 @@
                             continue;
                         }else{
                             //we should perform the swap here, but we will wait until we find the minimum greater
+                            //it is < not <= as we need to find the nearest number, because we have already sorted them
                             if(prevC[i] < min){
                                 min = prevC[i];
                                 index = i;
