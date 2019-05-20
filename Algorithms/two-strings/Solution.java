@@ -10,22 +10,21 @@ public class Solution {
 
     // Complete the twoStrings function below.
     static String twoStrings(String s1, String s2) {
-        String yes = "YES";
-        String no = "NO";
-        String result = no;
         char[] s1Chars = s1.toCharArray();
         char[] s2Chars = s2.toCharArray();
 
+        Set<Character> allChars = new HashSet<>();
+
         for(int i=0; i<s1Chars.length; i++){
-            for(int j=0; j<s2Chars.length; j++){
-                if(s1Chars[i] == s2Chars[j]){
-                    result = yes;
-                    break;
-                }
-            }
+            allChars.add(s1Chars[i]);
         }
 
-        return result;
+        for(int i=0; i<s2Chars.length; i++){
+            if(allChars.contains(s2Chars[i])){
+                return "YES";
+            }
+        }
+        return "NO";
     }
 
     private static final Scanner scanner = new Scanner(System.in);
