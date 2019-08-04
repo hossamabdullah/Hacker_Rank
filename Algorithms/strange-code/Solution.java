@@ -10,18 +10,14 @@ public class Solution {
 
     // Complete the strangeCounter function below.
     static long strangeCounter(long t) {
-        int start = 3;
-        int num = 4;
-        for(int i=1; i<=t; i++){
-            num--;
-            if(num==0){
-                num = start*2;
-                start = num;            
-            }
-            System.out.println(num);
+        long range = 3;
+        long end = 3;
+        while(t > end){
+            range *= 2;
+            end += range;
+            // System.out.println(range+", "+end);
         }
-
-        return num;
+        return end-t+1;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
