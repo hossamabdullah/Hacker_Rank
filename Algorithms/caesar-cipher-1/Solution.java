@@ -27,11 +27,13 @@ public class Solution {
             newCharacters.put(upperAlphabet[i], upperAlphabet[newCharIndex]);
         }
 
-        newCharacters.put('-', '-');
 
         StringBuilder sb = new StringBuilder();
         for(char c : s.toCharArray()){
-            sb.append(newCharacters.get(c));
+            if(newCharacters.containsKey(c))
+                sb.append(newCharacters.get(c));
+            else
+                sb.append(c);
         }
 
         return sb.toString();
