@@ -22,13 +22,22 @@ public class Solution {
 
             for(int i=range; (i+range)<=length; i+=range){
                 // System.out.println(i +", "+ range);
-                int prev = Integer.parseInt(s.substring(i-range, i));
-                
+                String prevString = s.substring(i-range, i);
+                if(prevString.charAt(0) == '0'){
+                    seqFound = false;
+                    break;
+                }
+                int prev = Integer.parseInt(prevString);
                 if((prev+1) % 10 == 0){
                     range++;
                     rangeIncreased = true;
                 }
-                int current = Integer.parseInt(s.substring(i, i+range));
+                String currentString = s.substring(i, i+range);
+                if(currentString.charAt(0) == '0'){
+                    seqFound = false;
+                    break;
+                }
+                int current = Integer.parseInt(currentString);
                 // System.out.println(current+" - "+prev);
                 if(current - prev != 1){
                     seqFound = false;
