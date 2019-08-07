@@ -19,8 +19,8 @@ public class Solution {
         while(range <= halfLength){
             boolean seqFound = true;
             boolean rangeIncreased = false;
-
-            for(int i=range; (i+range)<=length; i+=range){
+            int i = 0;
+            for(i=range; (i+range)<=length; i+=range){
                 // System.out.println(i +", "+ range);
                 String prevString = s.substring(i-range, i);
                 if(prevString.charAt(0) == '0'){
@@ -53,6 +53,11 @@ public class Solution {
                     break;
                 }
             }
+
+            if(length-i > 0 && length-i < range){
+                seqFound = false;
+            }
+            
             if(seqFound){
                 if(rangeIncreased)
                     minStart =new BigInteger(s.substring(0, range-1));
