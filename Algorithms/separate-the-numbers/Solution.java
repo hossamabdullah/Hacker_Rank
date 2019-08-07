@@ -15,7 +15,7 @@ public class Solution {
         int halfLength = length/2;
 
         int range = 1;
-        Integer minStart = null;
+        BigInteger minStart = null;
         while(range <= halfLength){
             boolean seqFound = true;
             boolean rangeIncreased = false;
@@ -27,8 +27,9 @@ public class Solution {
                     seqFound = false;
                     break;
                 }
-                int prev = Integer.parseInt(prevString);
-                if((prev+1) % 10 == 0){
+
+                BigInteger prev = new BigInteger(prevString);
+                if(((prev.add(BigInteger.ONE)).mod(BigInteger.TEN).equals(BigInteger.ZERO))){
                     range++;
                     rangeIncreased = true;
                 }
@@ -37,18 +38,20 @@ public class Solution {
                     seqFound = false;
                     break;
                 }
-                int current = Integer.parseInt(currentString);
-                // System.out.println(current+" - "+prev);
-                if(current - prev != 1){
+
+                BigInteger current = new BigInteger(currentString);
+                // System.out.println(current+" - "+prev+" = "+current.subtract(prev));
+                // System.out.println(current.subtract(prev) != BigInteger.ONE);
+                if(!(current.subtract(prev).equals(BigInteger.ONE))){
                     seqFound = false;
                     break;
                 }
             }
             if(seqFound){
                 if(rangeIncreased)
-                    minStart = Integer.parseInt(s.substring(0, range-1));
+                    minStart =new BigInteger(s.substring(0, range-1));
                 else
-                    minStart = Integer.parseInt(s.substring(0, range));
+                    minStart = new BigInteger(s.substring(0, range));
                 break;
             }else{
                 if(!rangeIncreased)
