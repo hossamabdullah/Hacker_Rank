@@ -29,7 +29,13 @@ public class Solution {
                 }
 
                 BigInteger prev = new BigInteger(prevString);
-                if(((prev.add(BigInteger.ONE)).mod(BigInteger.TEN).equals(BigInteger.ZERO))){
+                if(prevString.matches("9+")){
+                // if(((prev.add(BigInteger.ONE)).mod(BigInteger.TEN).equals(BigInteger.ZERO))){
+                    
+                    if((i + range + 1) > length){
+                        seqFound = false;
+                        break;
+                    }
                     range++;
                     rangeIncreased = true;
                 }
