@@ -10,7 +10,19 @@ public class Solution {
 
     // Complete the larrysArray function below.
     static String larrysArray(int[] A) {
-        
+        int numOfInversions = 0;
+        for(int i=0; i<A.length-1; i++){
+
+            for(int j=i+1; j<A.length; j++){
+
+                if(A[i] > A[j])
+                    numOfInversions++;
+            }
+        }
+        if(numOfInversions%2 == 0)
+            return "YES";
+        else
+            return "NO";
     }
 
     private static final Scanner scanner = new Scanner(System.in);
