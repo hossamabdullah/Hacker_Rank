@@ -15,20 +15,45 @@ beabeefeab
  */
 public class Solution {
 
-    // Complete the alternate function below.
-    static int alternate(String s) {
+    static List<Character> findDistinctCharacters(String s){
         List<Character> alphabets = new ArrayList<>();
         for(char c: s.toCharArray()){
             if(!alphabets.contains(c))
                 alphabets.add(c);
         }
+        return alphabets;
+    }
 
+    static String removeOtherChars(String s, char a, char b){
+        for(char c: s.toCharArray()){
+            if(c != a &&  c != b)
+                s = s.replaceAll(c+"", "");
+        }
+        return s;
+    }
+
+    static boolean isValid(String s){
+        char oldChar = '1';
+        for(int i=0; i<s.length(); i++){
+            if(s.charAt(i) == oldChar)
+                return false;
+            
+            oldChar = s.charAt(i);
+        }
+        return true;
+    }
+
+    // Complete the alternate function below.
+    static int alternate(String s) {
+        List<Character> alphabets = findDistinctCharacters(s);
         int maxLength = 0;
         for(int i=0; i<alphabets.size()-1; i++){
             for(int j=i+1; j<alphabets.size(); j++){
-                int tempLength = s.length() - (s.replaceAll(alphabets.get(i)+"", "").replaceAll(alphabets.get(j)+"", "").length());
-                if(tempLength > maxLength)
-                    maxLength = tempLength;
+                // System.out.println(alphabets.get(i)+", "+alphabets.get(j));
+                String result = removeOtherChars(s, alphabets.get(i), alphabets.get(j));
+                if(isValid(result) && result.length() >= maxLength){
+                    maxLength = result.length();
+                }
             }
         }
         
