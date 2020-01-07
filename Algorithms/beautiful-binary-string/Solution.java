@@ -10,16 +10,17 @@ public class Solution {
 
     // Complete the beautifulBinaryString function below.
     static int beautifulBinaryString(String b) {
-        String keyword = "010";
-        int index = 0;
+        char[] chars = b.toCharArray();
+        int i = 0;
         int count = 0;
-        while(index+3 <= b.length()){
-            if(b.substring(index, index+3).equals(keyword)){
-                index +=3;
+        while(i+3 <= chars.length){
+            if(chars[i]=='0' && chars[i+1]=='1' && chars[i+2]=='0'){
                 count ++;
+                i+=3;
             }else{
-                index +=1;
+                i++;
             }
+
         }
         return count;
     }
