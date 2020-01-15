@@ -19,6 +19,7 @@ so we add the sorted element of value equal the index(1) with the count equal th
         for(int element: arr){
             arrayOfSize[element]++;
         }
+        
         int[] sorted = new int[arr.length];
         int index = 0;
         for(int i=0; i<arrayOfSize.length; i++){
