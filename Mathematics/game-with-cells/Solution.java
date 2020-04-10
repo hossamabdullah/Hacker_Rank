@@ -10,7 +10,16 @@ public class Solution {
      * Complete the gameWithCells function below.
      */
     static int gameWithCells(int n, int m) {
-        return (int) (Math.ceil(n/2.0) * Math.ceil(m/2.0));
+        
+        int fourBlocksSuppliers = (n/2) * (m/2);
+        // System.out.println(n/2 + "*" + m/2 + ":" + fourBlocksSuppliers);
+        int remainingBlocks = (n%2)*m + (m%2)*n;
+        // System.out.println(remainingBlocks);
+        if(m%2!=0 && n%2!=0)
+            remainingBlocks -= 1;
+        int remainingBlocksSuppliers = remainingBlocks / 2 + remainingBlocks % 2;
+        // System.out.println(remainingBlocksSuppliers);
+        return fourBlocksSuppliers + remainingBlocksSuppliers;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
