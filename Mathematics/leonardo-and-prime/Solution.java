@@ -10,7 +10,7 @@ public class Solution {
      * Complete the primeCount function below.
      */
     static int primeCount(long n) {
-        long result = 1;
+        double result = 1;
         int count = 0;
         for(int i=0; i<primes.length; i++){
             result *= primes[i];
