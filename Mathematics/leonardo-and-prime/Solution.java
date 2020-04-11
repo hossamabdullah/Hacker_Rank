@@ -10,11 +10,12 @@ public class Solution {
      * Complete the primeCount function below.
      */
     static int primeCount(long n) {
-        double result = 1;
+        BigInteger result = BigInteger.ONE;
         int count = 0;
         for(int i=0; i<primes.length; i++){
-            result *= primes[i];
-            if(result <= n)
+            result = result.multiply(new BigInteger(primes[i]+""));
+            // result *= primes[i];
+            if(result.compareTo(new BigInteger(n+"")) <= 0)
                 count++;
             else
                 break;
