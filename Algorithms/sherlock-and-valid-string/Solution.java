@@ -28,15 +28,22 @@ public class Solution {
             countCount.put(charsCount.get(key), 1);
         }
 
+        for(int a :  countCount.keySet()){
+            System.out.println(a +", "+ countCount.get(a));
+        }
+        
+
         if(countCount.size() == 1)
             return "YES";
 
         if(countCount.size() == 2){
-            for(int temp: countCount.keySet()){
-                if(countCount.get(temp) == 1)
-                    return "YES";
-            }
-        }
+            Integer key1 = (Integer)countCount.keySet().toArray()[0];
+            Integer key2 = (Integer)countCount.keySet().toArray()[1];
+            int val1 = countCount.get(key1);
+            int val2 = countCount.get(key2);
+            if( (val1 == 1 || val2 == 1) && (key2 - key1 == 1  || key2 - key1 == -1))
+                return "YES";
+        }   
 
         return "NO";
     }
