@@ -19,7 +19,7 @@ public class Solution {
                 oddCharacters.add(temp);
         }
         int l = oddCharacters.size();
-        if(l==0 || l==1 || l==chars.length)
+        if(l<=1 || l>=chars.length-1)
             return "YES";
         else
             return "NO";
