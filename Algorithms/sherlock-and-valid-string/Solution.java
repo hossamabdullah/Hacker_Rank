@@ -28,23 +28,17 @@ public class Solution {
             countCount.put(charsCount.get(key), 1);
         }
 
-        boolean isFirstMoreThanOneMatched = false;
-        boolean isSecondMoreThanOneMatched = false;
-        for(int countEntry: countCount.keySet()){
-            if(!isFirstMoreThanOneMatched){
-                if(countCount.get(countEntry) > 1)
-                    isFirstMoreThanOneMatched = true;
-            }else {
-                if(countCount.get(countEntry) > 1)
-                    isSecondMoreThanOneMatched = true;
-                    break;
+        if(countCount.size() == 1)
+            return "YES";
+
+        if(countCount.size() == 2){
+            for(int temp: countCount.keySet()){
+                if(countCount.get(temp) == 1)
+                    return "YES";
             }
         }
 
-        if(isSecondMoreThanOneMatched)
-            return "NO";
-        else
-            return "YES";
+        return "NO";
     }
 
     private static final Scanner scanner = new Scanner(System.in);
