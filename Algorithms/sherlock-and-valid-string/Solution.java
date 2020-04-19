@@ -41,7 +41,7 @@ public class Solution {
             Integer key2 = (Integer)countCount.keySet().toArray()[1];
             int val1 = countCount.get(key1);
             int val2 = countCount.get(key2);
-            if( (val1 == 1 || val2 == 1) && (key2 - key1 == 1  || key2 - key1 == -1))
+            if( (val1 == 1 || val2 == 1) && (key2 - key1 == 1  || key2 - key1 == -1 || (key1 ==1 || key2 == 1)))
                 return "YES";
         }   
 
