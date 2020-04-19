@@ -11,18 +11,40 @@ public class Solution {
     // Complete the isValid function below.
     static String isValid(String s) {
         char[] chars = s.toCharArray();
-        Set<Character> oddCharacters = new HashSet<Character>();
+        Map<Character, Integer> charsCount = new HashMap<>();
+
         for(char temp: chars){
-            if(oddCharacters.contains(temp))
-                oddCharacters.remove(temp);
-            else   
-                oddCharacters.add(temp);
+            if(charsCount.containsKey(temp))
+                charsCount.put(temp, charsCount.get(temp)+1);
+            else
+                charsCount.put(temp, 1);
         }
-        int l = oddCharacters.size();
-        if(l<=1 || l>=chars.length-1)
-            return "YES";
-        else
+        
+        Map<Integer, Integer> countCount = new HashMap<>();
+        for(char key: charsCount.keySet()){
+            if(countCount.containsKey(charsCount.get(key)))
+                countCount.put(charsCount.get(key), (countCount.get(charsCount.get(key))+1));
+            else
+            countCount.put(charsCount.get(key), 1);
+        }
+
+        boolean isFirstMoreThanOneMatched = false;
+        boolean isSecondMoreThanOneMatched = false;
+        for(int countEntry: countCount.keySet()){
+            if(!isFirstMoreThanOneMatched){
+                if(countCount.get(countEntry) > 1)
+                    isFirstMoreThanOneMatched = true;
+            }else {
+                if(countCount.get(countEntry) > 1)
+                    isSecondMoreThanOneMatched = true;
+                    break;
+            }
+        }
+
+        if(isSecondMoreThanOneMatched)
             return "NO";
+        else
+            return "YES";
     }
 
     private static final Scanner scanner = new Scanner(System.in);
