@@ -21,7 +21,7 @@ public class Solution {
             return "-1";
         int extraCredit = k - differences;
 
-        for(int i=0; i<chars.length/2; i++){
+        for(int i=0; (n%2 !=0 && i<=chars.length/2) || (n%2==0 && i<chars.length/2); i++){
             if(chars[i] == chars[chars.length-1-i]){
                 if(extraCredit > 0 && i==(chars.length-1-i)){
                     extraCredit --;
@@ -48,18 +48,13 @@ public class Solution {
         
 
 
-        StringBuilder sb=new StringBuilder(plaindromeValue);  
-        sb.reverse();  
-        // if(n==1){
-        //     if(k>=1)
-        //         return "9";
-        //     else
-        //         return s;
-        // }
-        // if(n%2!=0)
-        //     return plaindromeValue + s.charAt((n/2)+1) + sb.toString();
-        // else 
-            return plaindromeValue + sb.toString();
+        StringBuilder sb=null;
+        if(n%2 ==0)
+            sb = new StringBuilder(plaindromeValue);  
+        else 
+            sb = new StringBuilder(plaindromeValue.substring(0, plaindromeValue.length()-1));  
+        sb.reverse();
+        return plaindromeValue + sb.toString();
     }
 
     private static final Scanner scanner = new Scanner(System.in);
