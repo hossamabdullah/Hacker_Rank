@@ -23,7 +23,16 @@ public class Solution {
 
         for(int i=0; i<chars.length/2; i++){
             if(chars[i] == chars[chars.length-1-i]){
-                plaindromeValue = plaindromeValue + chars[i];
+                if(extraCredit > 0 && i==(chars.length-1-i)){
+                    extraCredit --;
+                    plaindromeValue = plaindromeValue + "9";    
+                }else if(extraCredit > 1 && i!=(chars.length-1-i)){
+                    extraCredit --;
+                    extraCredit --;
+                    plaindromeValue = plaindromeValue + "9";
+                }else{
+                    plaindromeValue = plaindromeValue + chars[i];
+                }
             }else if(extraCredit > 0){
                 differences--;
                 extraCredit--;
@@ -41,7 +50,16 @@ public class Solution {
 
         StringBuilder sb=new StringBuilder(plaindromeValue);  
         sb.reverse();  
-        return plaindromeValue + sb.toString();
+        // if(n==1){
+        //     if(k>=1)
+        //         return "9";
+        //     else
+        //         return s;
+        // }
+        // if(n%2!=0)
+        //     return plaindromeValue + s.charAt((n/2)+1) + sb.toString();
+        // else 
+            return plaindromeValue + sb.toString();
     }
 
     private static final Scanner scanner = new Scanner(System.in);
