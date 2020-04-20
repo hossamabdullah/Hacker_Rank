@@ -23,10 +23,10 @@ public class Solution {
 
         for(int i=0; (n%2 !=0 && i<=chars.length/2) || (n%2==0 && i<chars.length/2); i++){
             if(chars[i] == chars[chars.length-1-i]){
-                if(extraCredit > 0 && i==(chars.length-1-i)){
+                if(extraCredit > 0 && i==(chars.length-1-i) && chars[i] != '9' ){
                     extraCredit --;
                     plaindromeValue = plaindromeValue + "9";    
-                }else if(extraCredit > 1 && i!=(chars.length-1-i)){
+                }else if(extraCredit > 1 && i!=(chars.length-1-i) && chars[i] != '9'){
                     extraCredit --;
                     extraCredit --;
                     plaindromeValue = plaindromeValue + "9";
@@ -42,11 +42,9 @@ public class Solution {
                 if(chars[i] >= chars[chars.length-1-i])
                     plaindromeValue = plaindromeValue + chars[i];
                 else
-                plaindromeValue = plaindromeValue + chars[chars.length-1-i];
+                    plaindromeValue = plaindromeValue + chars[chars.length-1-i];
             }
         }
-        
-
 
         StringBuilder sb=null;
         if(n%2 ==0)
