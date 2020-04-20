@@ -12,19 +12,32 @@ public class Solution {
     static String highestValuePalindrome(String s, int n, int k) {
         String plaindromeValue = "";
         char[] chars = s.toCharArray();
+        int differences = 0; 
+        for(int i=0; i<chars.length/2; i++){
+            if(chars[i] != chars[chars.length-1-i])
+                differences ++ ;
+        }
+        if(differences > k)
+            return "-1";
+        int extraCredit = k - differences;
+
         for(int i=0; i<chars.length/2; i++){
             if(chars[i] == chars[chars.length-1-i]){
                 plaindromeValue = plaindromeValue + chars[i];
-            }else if(k==0){
-                return "-1";
+            }else if(extraCredit > 0){
+                differences--;
+                extraCredit--;
+                plaindromeValue = plaindromeValue + "9";
             }else{
-                k--;
-                if(chars[i] > chars[chars.length-1-i])
+                differences--;
+                if(chars[i] >= chars[chars.length-1-i])
                     plaindromeValue = plaindromeValue + chars[i];
-                else 
-                    plaindromeValue = plaindromeValue + chars[i];
+                else
+                plaindromeValue = plaindromeValue + chars[chars.length-1-i];
             }
         }
+        
+
 
         StringBuilder sb=new StringBuilder(plaindromeValue);  
         sb.reverse();  
