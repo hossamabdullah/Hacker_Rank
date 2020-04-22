@@ -9,20 +9,24 @@ import java.util.regex.*;
 public class Solution {
 
     // Complete the gridSearch function below.
-    static String gridSearch(char[][] G, char[][] P, int R, int C, int r, int c) {
-        for(int i=0; i<R-r; i++){
-            for(int j=0; j<C-c; j++){
+    static String gridSearch(String[] G, String[] P, int R, int C, int r, int c) {
+        for(int i=0; i<R-r+1; i++){
+            for(int j=0; j<C-c+1; j++){
                 boolean matchFound = true;
-                for(int parentRow=i, childRow=0; parentRow<parentRow+r && childRow < r; parentRow++, childRow++){
-                    for(int parentCol=j, childCol=0; parentCol<parentCol+c && childCol< c; parentCol++, childCol++){
-                        if(G[parentRow][parentCol] != P[childRow][childCol]){
+                for(int parentRow=i, childRow=0; childRow < r; parentRow++, childRow++){
+                    for(int parentCol=j, childCol=0;  childCol< c; parentCol++, childCol++){
+                        // System.out.println("parent index: ("+G[parentRow].charAt(parentCol)+") "+parentRow +", "+parentCol+"/// child index: ("+P[childRow].charAt(childCol)+") "+childRow+", "+childCol);
+                        if(G[parentRow].charAt(parentCol) != P[childRow].charAt(childCol)){
                             matchFound = false;
                             break;
                         }
                     }
+                    if(!matchFound)
+                        break;
                 }
                 if(matchFound)
                     return "YES";
+                // System.out.println("not found");
             }
         }
         return "NO";
@@ -43,14 +47,13 @@ public class Solution {
 
             int C = Integer.parseInt(RC[1]);
 
-            // String[] G = new String[R];
-            char[][] GG = new char[R][C];            
+            String[] G = new String[R];
+            // char[][] GG = new char[R][C];            
 
             for (int i = 0; i < R; i++) {
                 String GItem = scanner.nextLine();
-                GG[i] = GItem.toCharArray();
-                
-                // G[i] = GItem;
+                // GG[i] = GItem.toCharArray();
+                G[i] = GItem;
             }
 
             String[] rc = scanner.nextLine().split(" ");
@@ -60,14 +63,14 @@ public class Solution {
             int c = Integer.parseInt(rc[1]);
 
             String[] P = new String[r];
-            char[][] PP = new char[r][c];
+            // char[][] PP = new char[r][c];
             for (int i = 0; i < r; i++) {
                 String PItem = scanner.nextLine();
-                PP[i] = PItem.toCharArray();
-                // P[i] = PItem;
+                // PP[i] = PItem.toCharArray();
+                P[i] = PItem;
             }
 
-            String result = gridSearch(GG, PP, R, C, r, c);
+            String result = gridSearch(G, P, R, C, r, c);
 
             bufferedWriter.write(result);
             bufferedWriter.newLine();
