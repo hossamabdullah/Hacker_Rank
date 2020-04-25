@@ -11,32 +11,39 @@ public class Solution {
     // Complete the weightedUniformStrings function below.
     static String[] weightedUniformStrings(String s, int[] queries) {
         char a = 'a';
-        String[] results = new String[queries.length];
-        int index = 0;
-        for(int i=0; i<queries.length; i++){
-            results[index] = "No";
-            char[] cs = s.toCharArray();
-            int sum = 0;
-            char currentChar = '0';
-            for(int j=0; j<cs.length; j++){
-                if((cs[j] - a + 1) > queries[i])
-                    break;
-                
-                if(cs[j] != currentChar){
-                    currentChar = cs[j];
-                    sum = 0;
-                    sum += (cs[j] - a + 1);
-                }else{
-                    sum += (cs[j] - a + 1);
-                }
+        char[] chars = s.toCharArray();
+        Set<Integer> availableCombinations = new HashSet<>();
+        
+        char previousChar = '0'; //0 as a first token
+        int sum = 0;
+        for(char tempChar: chars){
+            if(previousChar == tempChar){
+                sum += tempChar - a + 1;
+            }else{
+                previousChar = tempChar;
+                sum = tempChar - a + 1;
+            }
+            // System.out.println(tempChar +", "+previousChar+", "+sum);
+            if(sum != 0){
+                availableCombinations.add(sum);
+            }
+        }
 
-                if(sum == queries[i]){
-                    results[index] = "Yes";
-                    break;
-                }
+        // for(Integer ss: availableCombinations){
+        //     System.out.println(ss);
+        // }
+
+        String[] results = new String[queries.length];
+        int index =0;
+        for(int q : queries){
+            if(availableCombinations.contains(q)){
+                results[index] = "Yes";
+            }else{
+                results[index] = "No";
             }
             index++;
         }
+
         return results;
     }
 
