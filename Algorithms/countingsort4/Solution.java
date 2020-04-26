@@ -15,31 +15,31 @@ public class Solution {
     // Complete the countSort function below.
     static void countSort(List<List<String>> arr) {
         int reduceToDashCount = arr.size()/2;
+        int max = 0;
         for(List<String> occurence: arr){
+            if(Integer.parseInt(occurence.get(0)) > max)
+                max = Integer.parseInt(occurence.get(0));
             if(reduceToDashCount!=0){
                 occurence.remove(1);
                 occurence.add("-");
                 reduceToDashCount--;
             }
         }
-        
-        StringBuffer sb = new StringBuffer();
-        int currentIndex = 0;
-        int length = 0;
-        while(length!=arr.size()){
-            for(List<String> occurence: arr){
-                if(occurence.get(0).equals(currentIndex+"")){
-                    // System.out.println(occurence.get(0)+","+currentIndex+","+occurence.get(1)+","+sb.toString());
-                    sb.append(occurence.get(1));
-                    sb.append(" ");
-                    length++;
-                }
-            }
-
-            currentIndex++;
+        // System.out.println(max);
+        String[] output = new String[max+1];
+        for(List<String> occurence: arr){
+            int currentIndex = Integer.parseInt(occurence.get(0));
+            if(output[currentIndex] != null)
+                output[currentIndex] = output[currentIndex] + occurence.get(1) + " ";
+            else
+                output[currentIndex] = occurence.get(1) + " ";
         }
 
-        System.out.println(sb.toString());
+        for(String o: output){
+            if(o!=null)
+            System.out.print(o);
+        }
+        System.out.println();
     }
 
     public static void main(String[] args) throws IOException {
