@@ -12,56 +12,31 @@ import static java.util.stream.Collectors.toList;
 
 public class Solution {
 
-    // Complete the countSort function below.
-    static void countSort(List<List<String>> arr) {
-        int reduceToDashCount = arr.size()/2;
-        int max = 0;
-        for(List<String> occurence: arr){
-            if(Integer.parseInt(occurence.get(0)) > max)
-                max = Integer.parseInt(occurence.get(0));
-            if(reduceToDashCount!=0){
-                occurence.remove(1);
-                occurence.add("-");
-                reduceToDashCount--;
-            }
-        }
-        // System.out.println(max);
-        String[] output = new String[max+1];
-        for(List<String> occurence: arr){
-            int currentIndex = Integer.parseInt(occurence.get(0));
-            if(output[currentIndex] != null)
-                output[currentIndex] = output[currentIndex] + occurence.get(1) + " ";
-            else
-                output[currentIndex] = occurence.get(1) + " ";
+    public static void main(String[] args) throws IOException {
+        Scanner sc = new Scanner(System.in);
+        int entriesNum = sc.nextInt();
+        String[] results = new String[entriesNum];
+
+        for(int i=0; i<entriesNum/2; i++){
+            int index = sc.nextInt();
+            String temp  = sc.next();
+            if(results[index] == null)
+                results[index] = "";
+            results[index] = results[index] + "- ";
         }
 
-        for(String o: output){
-            if(o!=null)
-            System.out.print(o);
+        for(int i=entriesNum/2; i<entriesNum; i++){
+            int index = sc.nextInt();
+            String data  = sc.next();
+            if(results[index] == null)
+                results[index] = "";
+            results[index] = results[index] + data + " ";
+        }
+
+        for(int i=0; i<entriesNum; i++){
+            if(results[i] != null)
+                System.out.print(results[i]);
         }
         System.out.println();
-    }
-
-    public static void main(String[] args) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-
-        int n = Integer.parseInt(bufferedReader.readLine().trim());
-
-        List<List<String>> arr = new ArrayList<>();
-
-        IntStream.range(0, n).forEach(i -> {
-            try {
-                arr.add(
-                    Stream.of(bufferedReader.readLine().replaceAll("\\s+$", "").split(" "))
-                        .collect(toList())
-                );
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-        });
-
-        countSort(arr);
-
-        bufferedReader.close();
     }
 }
