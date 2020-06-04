@@ -12,18 +12,19 @@ public class Solution {
         return ( (a+b>c) && (a+c>b) && (c+b>a) );
     }
 
-    private static int priem(int a, int b, int c){
-        return a+b+c;
+    private static long priem(int a, int b, int c){
+        return (long)a+b+c;
     }
 
     // Complete the maximumPerimeterTriangle function below.
     static int[] maximumPerimeterTriangle(int[] sticks) {
-        int longestPremiter = 0;
+        long longestPremiter = 0;
         int[] triangle = new int[3];
         for(int i=0; i<sticks.length-2; i++){
             for(int j=i+1; j<sticks.length-1; j++){
                 for(int k=j+1; k<sticks.length; k++){
                     int a = sticks[i]; int b = sticks[j]; int c = sticks[k];
+                    // System.out.println(a+","+b+","+c+",: "+isTriangle(a, b, c)+(priem(a, b, c)));
                     if(isTriangle(a, b, c) && priem(a, b, c) >longestPremiter){
                         longestPremiter = priem(a,b,c);
                         triangle[0] = a;
