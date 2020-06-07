@@ -8,38 +8,32 @@ import java.util.regex.*;
 
 public class Solution {
     private final static int IMPORTANT_CONTEST = 1;
+    private final static int URGENCY_INDEX = 1;
+    private final static int LUCK_INDEX = 0;
 
-    //ic -> importantContest
-    static int luckBalance(int n, int k, int[][] contests) {
-        int[] icLuck = new int[n];
-        int icIndex = 0;
-        int sum = 0;
-        for(int i=0; i<n; i++){
-            if(contests[i][1] == IMPORTANT_CONTEST){
-                icLuck[icIndex] = contests[i][0];
-                icIndex++;
-            }else{
-                sum += contests[i][0];
-            }
+    static int luckBalance(int k, int[][] contests){
+        int[] importantContests = new int[contests.length];
+        int importantContestsIndex = 0;
+        int resultLuck = 0;
+        for(int i=0; i<contests.length; i++){
+            if(contests[i][URGENCY_INDEX] == IMPORTANT_CONTEST)
+                importantContests[importantContestsIndex++] = contests[i][LUCK_INDEX];
+            else
+                resultLuck += contests[i][LUCK_INDEX];
         }
 
-        Arrays.sort(icLuck);
-        // System.out.println(n-k-1);
-        // for(int i=n-1; i>=0; i--){
-        //     System.out.println(i+", "+icLuck[i]);
-        // }
-        // System.out.println(sum);
-        for(int i=n-1; i > n-k-1; i--){
-            sum+=icLuck[i];
-        }
-        // System.out.println(sum);
-        for(int i=n-k-1; i>=0; i--){
-            sum-=icLuck[i];
-        }
+        Arrays.sort(importantContests);
 
-        return sum;
-
+        k = contests.length - k;
+        for(int contest: importantContests){
+            if(k-- > 0)
+                resultLuck -= contest;    
+            else
+                resultLuck += contest;
+        }
+        return resultLuck;
     }
+
 
     private static final Scanner scanner = new Scanner(System.in);
 
@@ -64,7 +58,7 @@ public class Solution {
             }
         }
 
-        int result = luckBalance(n, k, contests);
+        int result = luckBalance(k, contests);
 
         bufferedWriter.write(String.valueOf(result));
         bufferedWriter.newLine();
