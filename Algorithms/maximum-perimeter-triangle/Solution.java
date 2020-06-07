@@ -12,12 +12,15 @@ public class Solution {
     static int[] maximumPerimeterTriangle(int[] sticks) {
         Arrays.sort(sticks);
         int i = sticks.length - 3;
-        while(i >= 0 && (sticks[i] + sticks[i+1] <= sticks[i+2]))
+        while(i >= 0 && (sticks[i] + sticks[i+1] <= sticks[i+2] ) )
             i--;
-        if(i == -1)
-            return new int[]{0, 0, 0};
-        int[] result = new int[]{sticks[i], sticks[i+1], sticks[i+2]};
-        return result;
+        
+        int[] res;
+        if(i >= 0)
+            res = new int[]{sticks[i], sticks[i+1], sticks[i+2]};
+        else
+            res = new int[]{0,0,0};
+        return res;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
