@@ -8,36 +8,16 @@ import java.util.regex.*;
 
 public class Solution {
 
-    private static boolean isTriangle(int a, int b, int c){
-        return ( (a+b>c) && (a+c>b) && (c+b>a) );
-    }
-
-    private static long priem(int a, int b, int c){
-        return (long)a+b+c;
-    }
-
     // Complete the maximumPerimeterTriangle function below.
     static int[] maximumPerimeterTriangle(int[] sticks) {
-        long longestPremiter = 0;
-        int[] triangle = new int[3];
-        for(int i=0; i<sticks.length-2; i++){
-            for(int j=i+1; j<sticks.length-1; j++){
-                for(int k=j+1; k<sticks.length; k++){
-                    int a = sticks[i]; int b = sticks[j]; int c = sticks[k];
-                    // System.out.println(a+","+b+","+c+",: "+isTriangle(a, b, c)+(priem(a, b, c)));
-                    if(isTriangle(a, b, c) && priem(a, b, c) >longestPremiter){
-                        longestPremiter = priem(a,b,c);
-                        triangle[0] = a;
-                        triangle[1] = b;
-                        triangle[2] = c;
-                    }
-                }
-            }
-        }
-            
-        Arrays.sort(triangle);
-        return triangle;
-
+        Arrays.sort(sticks);
+        int i = sticks.length - 3;
+        while(i >= 0 && (sticks[i] + sticks[i+1] <= sticks[i+2]))
+            i--;
+        if(i == -1)
+            return new int[]{0, 0, 0};
+        int[] result = new int[]{sticks[i], sticks[i+1], sticks[i+2]};
+        return result;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
