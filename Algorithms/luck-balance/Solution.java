@@ -11,27 +11,27 @@ public class Solution {
     private final static int URGENCY_INDEX = 1;
     private final static int LUCK_INDEX = 0;
 
-    static int luckBalance(int k, int[][] contests){
-        int[] importantContests = new int[contests.length];
-        int importantContestsIndex = 0;
-        int resultLuck = 0;
-        for(int i=0; i<contests.length; i++){
-            if(contests[i][URGENCY_INDEX] == IMPORTANT_CONTEST)
-                importantContests[importantContestsIndex++] = contests[i][LUCK_INDEX];
+    static int luckBalance(int contestsToLoose, int[][] contests){
+        List<Integer> important = new ArrayList<>();
+        int luck = 0;
+        for(int[] contest: contests){
+            if(contest[URGENCY_INDEX] == IMPORTANT_CONTEST)
+                important.add(contest[LUCK_INDEX]);
             else
-                resultLuck += contests[i][LUCK_INDEX];
+                luck += contest[LUCK_INDEX];
         }
 
-        Arrays.sort(importantContests);
+        Collections.sort(important);
+        int contestsToWin = important.size() - contestsToLoose;
 
-        k = contests.length - k;
-        for(int contest: importantContests){
-            if(k-- > 0)
-                resultLuck -= contest;    
+        for(int contest: important){
+            if(contestsToWin-- > 0)
+                luck -= contest;
             else
-                resultLuck += contest;
+                luck += contest;
         }
-        return resultLuck;
+
+        return luck;
     }
 
 
