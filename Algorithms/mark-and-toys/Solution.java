@@ -10,16 +10,16 @@ public class Solution {
 
     // Complete the maximumToys function below.
     static int maximumToys(int[] prices, int k) {
-        return Arrays.asList(prices)
-                .stream()
-                .sorted()
-                .flatMap(List::stream)
-                .reduce(0, (acc, toy) -> {
-                    if(acc+toy <= k)
-                        return acc+tor;
-                    else
-                        return acc;
-                });
+        Arrays.sort(prices);  int remainingMoney = k;   int countOfToys = 0;
+        for(int i=0; i<prices.length; i++){
+            if(remainingMoney >= prices[i]){
+                countOfToys++;
+                remainingMoney -= prices[i];
+            }else{
+                break;
+            }
+        }
+        return countOfToys;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
