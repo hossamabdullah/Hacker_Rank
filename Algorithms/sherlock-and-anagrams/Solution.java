@@ -21,7 +21,7 @@
 
                     if(results.containsKey(slice)){
                         count += results.get(slice);
-                        int newCount = count + 1;
+                        int newCount = results.get(slice) + 1;
                         results.put(slice, newCount);
                     }else{
                         results.put(slice, 1);
