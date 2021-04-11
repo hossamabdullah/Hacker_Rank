@@ -13,6 +13,7 @@
         static int sherlockAndAnagrams(String s) {
             int count = 0;
             Map<String, Integer> results = new HashMap<>();
+            
             for(int i=1; i<s.length(); i++){
                 for(int j=0; j<s.length() && j+i <= s.length(); j++){
                     String slice = sortString(s.substring(j, j+i));
