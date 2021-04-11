@@ -15,22 +15,12 @@
             Map<String, Integer> results = new HashMap<>();
             for(int i=1; i<s.length(); i++){
                 for(int j=0; j<s.length() && j+i <= s.length(); j++){
-                    String slice = s.substring(j, j+i);
-                    slice = sortString(slice);
-                    // System.out.println(slice);
-
-                    if(results.containsKey(slice)){
-                        int newCount = results.get(slice) + 1;
-                        results.put(slice, newCount);
-                    }else{
-                        results.put(slice, 1);
-                    }
+                    String slice = sortString(s.substring(j, j+i));
+                    if(results.containsKey(slice))    results.put(slice, results.get(slice) + 1);
+                    else                              results.put(slice, 1);
                 }
             }
-
-            // results.keySet().stream().forEach(i -> System.out.println(i+", "+results.get(i)));
-            count = results.keySet().stream().filter(i -> results.get(i) >1).mapToInt(i -> summation(results.get(i)-1)).sum();
-            // System.out.println("sum= "+count);
+            count = results.keySet().stream().mapToInt(i -> summation(results.get(i)-1)).sum();
             return count;
         }
 
