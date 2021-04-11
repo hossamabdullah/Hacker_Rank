@@ -12,15 +12,14 @@
         // Complete the sherlockAndAnagrams function below.
         static int sherlockAndAnagrams(String s) {
             int count = 0;
+            Map<String, Integer> results = new HashMap<>();
             for(int i=1; i<s.length(); i++){
-                Map<String, Integer> results = new HashMap<>();
                 for(int j=0; j<s.length() && j+i <= s.length(); j++){
                     String slice = s.substring(j, j+i);
                     slice = sortString(slice);
-                    System.out.println(slice);
+                    // System.out.println(slice);
 
                     if(results.containsKey(slice)){
-                        count += results.get(slice);
                         int newCount = results.get(slice) + 1;
                         results.put(slice, newCount);
                     }else{
@@ -28,7 +27,15 @@
                     }
                 }
             }
+
+            // results.keySet().stream().forEach(i -> System.out.println(i+", "+results.get(i)));
+            count = results.keySet().stream().filter(i -> results.get(i) >1).mapToInt(i -> summation(results.get(i)-1)).sum();
+            // System.out.println("sum= "+count);
             return count;
+        }
+
+        private static int summation(int n){
+            return (n*(n+1))/2;
         }
 
         public static String sortString(String inputString){
