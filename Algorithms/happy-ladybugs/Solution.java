@@ -21,9 +21,9 @@ public class Solution {
                             .filter(c -> c != '_')
                             .findAny()
                             .isPresent();
-        System.out.println(isLadyBugExist);
-        if(!(isLadyBugExist))return "NO";
-        System.out.println(!(isLadyBugExist));
+        if(!isLadyBugExist) {
+            return "YES";
+        }
 
         Map<Character, Long> counts = cells.stream()
                             .filter(c -> c != '_')
