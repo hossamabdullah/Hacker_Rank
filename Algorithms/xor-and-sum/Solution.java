@@ -11,8 +11,8 @@ import static java.util.stream.Collectors.joining;
 import static java.util.stream.Collectors.toList;
 
 class Result {
-    private final static Integer SUMMATION_END = 314159;
-    private final static Long MOD_VAL = new Long("1000000007");
+    private final static Integer SUMMATION_END = 314160;
+    public final static Long MOD_VAL = new Long("1000000007");
     /*
      * Complete the 'xorAndSum' function below.
      *
@@ -23,19 +23,14 @@ class Result {
      */
 
     public static Long xorAndSum(Long aInt, Long bInt, int i) {
-        if(i > SUMMATION_END){
+        if(i == SUMMATION_END){
             return 0l;
         }
         
         Long previousSum = xorAndSum(aInt, bInt, i+1);
         
-        Long currentVal = aInt ^ (bInt << i);
-        currentVal =  currentVal % MOD_VAL;
-                                        
-        Long newVal = previousSum + currentVal;
-        newVal = newVal % MOD_VAL;
+        return previousSum + ( aInt ^ (bInt << i) );
         
-        return newVal;
     }
 
 }
@@ -50,6 +45,7 @@ public class Solution {
         String b = bufferedReader.readLine();
 
         Long result = Result.xorAndSum(Long.parseLong(a, 2), Long.parseLong(b, 2), 0);
+        result = result % Result.MOD_VAL;
 
         bufferedWriter.write(String.valueOf(result));
         bufferedWriter.newLine();
